@@ -6,7 +6,7 @@
  *
  * This content is released under the MIT License (MIT)
  *
- * Copyright (c) 2014 - 2018, British Columbia Institute of Technology
+ * Copyright (c) 2014 - 2015, British Columbia Institute of Technology
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,10 +28,10 @@
  *
  * @package	CodeIgniter
  * @author	EllisLab Dev Team
- * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
- * @copyright	Copyright (c) 2014 - 2018, British Columbia Institute of Technology (http://bcit.ca/)
+ * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (http://ellislab.com/)
+ * @copyright	Copyright (c) 2014 - 2015, British Columbia Institute of Technology (http://bcit.ca/)
  * @license	http://opensource.org/licenses/MIT	MIT License
- * @link	https://codeigniter.com
+ * @link	http://codeigniter.com
  * @since	Version 1.0.0
  * @filesource
  */
@@ -44,7 +44,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @subpackage	Libraries
  * @category	Image_lib
  * @author		EllisLab Dev Team
- * @link		https://codeigniter.com/user_guide/libraries/image_lib.html
+ * @link		http://codeigniter.com/user_guide/libraries/image_lib.html
  */
 class CI_Image_lib {
 
@@ -392,16 +392,6 @@ class CI_Image_lib {
 			$this->initialize($props);
 		}
 
-		/**
-		 * A work-around for some improperly formatted, but
-		 * usable JPEGs; known to be produced by Samsung
-		 * smartphones' front-facing cameras.
-		 *
-		 * @see	https://github.com/bcit-ci/CodeIgniter/issues/4967
-		 * @see	https://bugs.php.net/bug.php?id=72404
-		 */
-		ini_set('gd.jpeg_ignore_warning', 1);
-
 		log_message('info', 'Image Lib Class Initialized');
 	}
 
@@ -466,7 +456,7 @@ class CI_Image_lib {
 			{
 				if (property_exists($this, $key))
 				{
-					if (in_array($key, array('wm_font_color', 'wm_shadow_color'), TRUE))
+					if (in_array($key, array('wm_font_color', 'wm_shadow_color')))
 					{
 						if (preg_match('/^#?([0-9a-f]{3}|[0-9a-f]{6})$/i', $val, $matches))
 						{
@@ -487,10 +477,6 @@ class CI_Image_lib {
 						{
 							continue;
 						}
-					}
-					elseif (in_array($key, array('width', 'height'), TRUE) && ! ctype_digit((string) $val))
-					{
-						continue;
 					}
 
 					$this->$key = $val;
@@ -554,30 +540,37 @@ class CI_Image_lib {
 		 */
 		if ($this->new_image === '')
 		{
-			$this->dest_image  = $this->source_image;
+			$this->dest_image = $this->source_image;
 			$this->dest_folder = $this->source_folder;
 		}
-		elseif (strpos($this->new_image, '/') === FALSE && strpos($this->new_image, '\\') === FALSE)
+		elseif (strpos($this->new_image, '/') === FALSE)
 		{
-			$this->dest_image  = $this->new_image;
 			$this->dest_folder = $this->source_folder;
+			$this->dest_image = $this->new_image;
 		}
 		else
 		{
-			// Is there a file name?
-			if ( ! preg_match('#\.(jpg|jpeg|gif|png)$#i', $this->new_image))
+			if (strpos($this->new_image, '/') === FALSE && strpos($this->new_image, '\\') === FALSE)
 			{
-				$this->dest_image  = $this->source_image;
-				$this->dest_folder = $this->new_image;
+				$full_dest_path = str_replace('\\', '/', realpath($this->new_image));
 			}
 			else
 			{
-				$x = explode('/', str_replace('\\', '/', $this->new_image));
-				$this->dest_image  = end($x);
-				$this->dest_folder = str_replace($this->dest_image, '', $this->new_image);
+				$full_dest_path = $this->new_image;
 			}
 
-			$this->dest_folder = realpath($this->dest_folder).'/';
+			// Is there a file name?
+			if ( ! preg_match('#\.(jpg|jpeg|gif|png)$#i', $full_dest_path))
+			{
+				$this->dest_folder = $full_dest_path.'/';
+				$this->dest_image = $this->source_image;
+			}
+			else
+			{
+				$x = explode('/', $full_dest_path);
+				$this->dest_image = end($x);
+				$this->dest_folder = str_replace($this->dest_image, '', $full_dest_path);
+			}
 		}
 
 		/* Compile the finalized filenames/paths
@@ -786,7 +779,7 @@ class CI_Image_lib {
 			$this->y_axis = 0;
 		}
 
-		// Create the image handle
+		//  Create the image handle
 		if ( ! ($src_img = $this->image_create_gd()))
 		{
 			return FALSE;
@@ -835,10 +828,7 @@ class CI_Image_lib {
 		imagedestroy($dst_img);
 		imagedestroy($src_img);
 
-		if ($this->dynamic_output !== TRUE)
-		{
-			chmod($this->full_dst_path, $this->file_permissions);
-		}
+		chmod($this->full_dst_path, $this->file_permissions);
 
 		return TRUE;
 	}
@@ -855,7 +845,7 @@ class CI_Image_lib {
 	 */
 	public function image_process_imagemagick($action = 'resize')
 	{
-		// Do we have a vaild library path?
+		//  Do we have a vaild library path?
 		if ($this->library_path === '')
 		{
 			$this->set_error('imglib_libpath_invalid');
@@ -872,27 +862,26 @@ class CI_Image_lib {
 
 		if ($action === 'crop')
 		{
-			$cmd .= ' -crop '.$this->width.'x'.$this->height.'+'.$this->x_axis.'+'.$this->y_axis;
+			$cmd .= ' -crop '.$this->width.'x'.$this->height.'+'.$this->x_axis.'+'.$this->y_axis.' "'.$this->full_src_path.'" "'.$this->full_dst_path .'" 2>&1';
 		}
 		elseif ($action === 'rotate')
 		{
-			$cmd .= ($this->rotation_angle === 'hor' OR $this->rotation_angle === 'vrt')
-					? ' -flop'
-					: ' -rotate '.$this->rotation_angle;
+			$angle = ($this->rotation_angle === 'hor' OR $this->rotation_angle === 'vrt')
+					? '-flop' : '-rotate '.$this->rotation_angle;
+
+			$cmd .= ' '.$angle.' "'.$this->full_src_path.'" "'.$this->full_dst_path.'" 2>&1';
 		}
 		else // Resize
 		{
 			if($this->maintain_ratio === TRUE)
 			{
-				$cmd .= ' -resize '.$this->width.'x'.$this->height;
+				$cmd .= ' -resize '.$this->width.'x'.$this->height.' "'.$this->full_src_path.'" "'.$this->full_dst_path.'" 2>&1';
 			}
 			else
 			{
-				$cmd .= ' -resize '.$this->width.'x'.$this->height.'\!';
+				$cmd .= ' -resize '.$this->width.'x'.$this->height.'\! "'.$this->full_src_path.'" "'.$this->full_dst_path.'" 2>&1';
 			}
 		}
-
-		$cmd .= ' '.escapeshellarg($this->full_src_path).' '.escapeshellarg($this->full_dst_path).' 2>&1';
 
 		$retval = 1;
 		// exec() might be disabled
@@ -975,7 +964,7 @@ class CI_Image_lib {
 			$cmd_inner = 'pnmscale -xysize '.$this->width.' '.$this->height;
 		}
 
-		$cmd = $this->library_path.$cmd_in.' '.escapeshellarg($this->full_src_path).' | '.$cmd_inner.' | '.$cmd_out.' > '.$this->dest_folder.'netpbm.tmp';
+		$cmd = $this->library_path.$cmd_in.' '.$this->full_src_path.' | '.$cmd_inner.' | '.$cmd_out.' > '.$this->dest_folder.'netpbm.tmp';
 
 		$retval = 1;
 		// exec() might be disabled
@@ -1021,7 +1010,7 @@ class CI_Image_lib {
 		// going to have to figure out how to determine the color
 		// of the alpha channel in a future release.
 
-		$white = imagecolorallocate($src_img, 255, 255, 255);
+		$white	= imagecolorallocate($src_img, 255, 255, 255);
 
 		// Rotate it!
 		$dst_img = imagerotate($src_img, $this->rotation_angle, $white);
@@ -1066,11 +1055,8 @@ class CI_Image_lib {
 
 		if ($this->rotation_angle === 'hor')
 		{
-			for ($i = 0; $i < $height; $i++)
+			for ($i = 0; $i < $height; $i++, $left = 0, $right = $width-1)
 			{
-				$left = 0;
-				$right = $width - 1;
-
 				while ($left < $right)
 				{
 					$cl = imagecolorat($src_img, $left, $i);
@@ -1086,21 +1072,18 @@ class CI_Image_lib {
 		}
 		else
 		{
-			for ($i = 0; $i < $width; $i++)
+			for ($i = 0; $i < $width; $i++, $top = 0, $bot = $height-1)
 			{
-				$top = 0;
-				$bottom = $height - 1;
-
-				while ($top < $bottom)
+				while ($top < $bot)
 				{
 					$ct = imagecolorat($src_img, $i, $top);
-					$cb = imagecolorat($src_img, $i, $bottom);
+					$cb = imagecolorat($src_img, $i, $bot);
 
 					imagesetpixel($src_img, $i, $top, $cb);
-					imagesetpixel($src_img, $i, $bottom, $ct);
+					imagesetpixel($src_img, $i, $bot, $ct);
 
 					$top++;
-					$bottom--;
+					$bot--;
 				}
 			}
 		}
@@ -1206,7 +1189,7 @@ class CI_Image_lib {
 			$x_axis += $this->orig_width - $wm_width;
 		}
 
-		// Build the finalized image
+		//  Build the finalized image
 		if ($wm_img_type === 3 && function_exists('imagealphablending'))
 		{
 			@imagealphablending($src_img, TRUE);
@@ -1344,7 +1327,7 @@ class CI_Image_lib {
 		{
 			$y_axis += $this->orig_height - $fontheight - $this->wm_shadow_distance - ($fontheight / 2);
 		}
-
+		
 		// Set horizontal alignment
 		if ($this->wm_hor_alignment === 'R')
 		{
@@ -1354,13 +1337,13 @@ class CI_Image_lib {
 		{
 			$x_axis += floor(($this->orig_width - ($fontwidth * strlen($this->wm_text))) / 2);
 		}
-
+		
 		if ($this->wm_use_drop_shadow)
 		{
 			// Offset from text
 			$x_shad = $x_axis + $this->wm_shadow_distance;
 			$y_shad = $y_axis + $this->wm_shadow_distance;
-
+				
 			/* Set RGB values for shadow
 			 *
 			 * First character is #, so we don't really need it.
@@ -1369,7 +1352,7 @@ class CI_Image_lib {
 			 */
 			$drp_color = str_split(substr($this->wm_shadow_color, 1, 6), 2);
 			$drp_color = imagecolorclosest($src_img, hexdec($drp_color[0]), hexdec($drp_color[1]), hexdec($drp_color[2]));
-
+			
 			// Add the shadow to the source image
 			if ($this->wm_use_truetype)
 			{
@@ -1380,7 +1363,7 @@ class CI_Image_lib {
 				imagestring($src_img, $this->wm_font_size, $x_shad, $y_shad, $this->wm_text, $drp_color);
 			}
 		}
-
+		
 		/* Set RGB values for text
 		 *
 		 * First character is #, so we don't really need it.
@@ -1399,7 +1382,7 @@ class CI_Image_lib {
 		{
 			imagestring($src_img, $this->wm_font_size, $x_axis, $y_axis, $this->wm_text, $txt_color);
 		}
-
+		
 		// We can preserve transparency for PNG images
 		if ($this->image_type === 3)
 		{
@@ -1448,7 +1431,7 @@ class CI_Image_lib {
 
 		switch ($image_type)
 		{
-			case 1:
+			case 1 :
 				if ( ! function_exists('imagecreatefromgif'))
 				{
 					$this->set_error(array('imglib_unsupported_imagecreate', 'imglib_gif_not_supported'));
@@ -1456,7 +1439,7 @@ class CI_Image_lib {
 				}
 
 				return imagecreatefromgif($path);
-			case 2:
+			case 2 :
 				if ( ! function_exists('imagecreatefromjpeg'))
 				{
 					$this->set_error(array('imglib_unsupported_imagecreate', 'imglib_jpg_not_supported'));
@@ -1464,7 +1447,7 @@ class CI_Image_lib {
 				}
 
 				return imagecreatefromjpeg($path);
-			case 3:
+			case 3 :
 				if ( ! function_exists('imagecreatefrompng'))
 				{
 					$this->set_error(array('imglib_unsupported_imagecreate', 'imglib_png_not_supported'));
@@ -1652,31 +1635,25 @@ class CI_Image_lib {
 		}
 
 		$vals = getimagesize($path);
-		if ($vals === FALSE)
-		{
-			$this->set_error('imglib_invalid_image');
-			return FALSE;
-		}
-
 		$types = array(1 => 'gif', 2 => 'jpeg', 3 => 'png');
-		$mime = isset($types[$vals[2]]) ? 'image/'.$types[$vals[2]] : 'image/jpg';
+		$mime = (isset($types[$vals[2]])) ? 'image/'.$types[$vals[2]] : 'image/jpg';
 
 		if ($return === TRUE)
 		{
 			return array(
-				'width'      => $vals[0],
-				'height'     => $vals[1],
-				'image_type' => $vals[2],
-				'size_str'   => $vals[3],
-				'mime_type'  => $mime
-			);
+					'width' =>	$vals[0],
+					'height' =>	$vals[1],
+					'image_type' =>	$vals[2],
+					'size_str' =>	$vals[3],
+					'mime_type' =>	$mime
+				);
 		}
 
-		$this->orig_width  = $vals[0];
-		$this->orig_height = $vals[1];
-		$this->image_type  = $vals[2];
-		$this->size_str    = $vals[3];
-		$this->mime_type   = $mime;
+		$this->orig_width	= $vals[0];
+		$this->orig_height	= $vals[1];
+		$this->image_type	= $vals[2];
+		$this->size_str		= $vals[3];
+		$this->mime_type	= $mime;
 
 		return TRUE;
 	}

@@ -6,7 +6,7 @@
  *
  * This content is released under the MIT License (MIT)
  *
- * Copyright (c) 2014 - 2018, British Columbia Institute of Technology
+ * Copyright (c) 2014 - 2015, British Columbia Institute of Technology
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,10 +28,10 @@
  *
  * @package	CodeIgniter
  * @author	EllisLab Dev Team
- * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
- * @copyright	Copyright (c) 2014 - 2018, British Columbia Institute of Technology (http://bcit.ca/)
+ * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (http://ellislab.com/)
+ * @copyright	Copyright (c) 2014 - 2015, British Columbia Institute of Technology (http://bcit.ca/)
  * @license	http://opensource.org/licenses/MIT	MIT License
- * @link	https://codeigniter.com
+ * @link	http://codeigniter.com
  * @since	Version 2.0.0
  * @filesource
  */
@@ -100,9 +100,27 @@ class CI_Cache extends CI_Driver_Library {
 	 */
 	public function __construct($config = array())
 	{
-		isset($config['adapter']) && $this->_adapter = $config['adapter'];
-		isset($config['backup']) && $this->_backup_driver = $config['backup'];
+		$default_config = array(
+			'adapter',
+			'memcached'
+		);
+
+		foreach ($default_config as $key)
+		{
+			if (isset($config[$key]))
+			{
+				$param = '_'.$key;
+
+				$this->{$param} = $config[$key];
+			}
+		}
+
 		isset($config['key_prefix']) && $this->key_prefix = $config['key_prefix'];
+
+		if (isset($config['backup']) && in_array($config['backup'], $this->valid_drivers))
+		{
+			$this->_backup_driver = $config['backup'];
+		}
 
 		// If the specified adapter isn't available, check the backup.
 		if ( ! $this->is_supported($this->_adapter))
@@ -178,7 +196,7 @@ class CI_Cache extends CI_Driver_Library {
 	 */
 	public function increment($id, $offset = 1)
 	{
-		return $this->{$this->_adapter}->increment($this->key_prefix.$id, $offset);
+		return $this->{$this->_adapter}->increment($id, $offset);
 	}
 
 	// ------------------------------------------------------------------------
@@ -192,7 +210,7 @@ class CI_Cache extends CI_Driver_Library {
 	 */
 	public function decrement($id, $offset = 1)
 	{
-		return $this->{$this->_adapter}->decrement($this->key_prefix.$id, $offset);
+		return $this->{$this->_adapter}->decrement($id, $offset);
 	}
 
 	// ------------------------------------------------------------------------
@@ -243,13 +261,14 @@ class CI_Cache extends CI_Driver_Library {
 	 */
 	public function is_supported($driver)
 	{
-		static $support;
+		static $support = array();
 
-		if ( ! isset($support, $support[$driver]))
+		if ( ! isset($support[$driver]))
 		{
 			$support[$driver] = $this->{$driver}->is_supported();
 		}
 
 		return $support[$driver];
 	}
+
 }

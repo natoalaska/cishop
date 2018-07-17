@@ -6,7 +6,7 @@
  *
  * This content is released under the MIT License (MIT)
  *
- * Copyright (c) 2014 - 2018, British Columbia Institute of Technology
+ * Copyright (c) 2014 - 2015, British Columbia Institute of Technology
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,10 +28,10 @@
  *
  * @package	CodeIgniter
  * @author	EllisLab Dev Team
- * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
- * @copyright	Copyright (c) 2014 - 2018, British Columbia Institute of Technology (http://bcit.ca/)
+ * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (http://ellislab.com/)
+ * @copyright	Copyright (c) 2014 - 2015, British Columbia Institute of Technology (http://bcit.ca/)
  * @license	http://opensource.org/licenses/MIT	MIT License
- * @link	https://codeigniter.com
+ * @link	http://codeigniter.com
  * @since	Version 1.0.0
  * @filesource
  */
@@ -44,7 +44,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @subpackage	Helpers
  * @category	Helpers
  * @author		EllisLab Dev Team
- * @link		https://codeigniter.com/user_guide/helpers/inflector_helper.html
+ * @link		http://codeigniter.com/user_guide/helpers/inflector_helper.html
  */
 
 // --------------------------------------------------------------------
@@ -95,7 +95,6 @@ if ( ! function_exists('singular'))
 			'/(s)tatuses$/'		=> '\1\2tatus',
 			'/(c)hildren$/'		=> '\1\2hild',
 			'/(n)ews$/'		=> '\1\2ews',
-			'/(quiz)zes$/'		=> '\1',
 			'/([^us])s$/'		=> '\1'
 		);
 
@@ -134,7 +133,6 @@ if ( ! function_exists('plural'))
 		}
 
 		$plural_rules = array(
-			'/(quiz)$/'                => '\1zes',      // quizzes
 			'/^(ox)$/'                 => '\1\2en',     // ox
 			'/([m|l])ouse$/'           => '\1ice',      // mouse, louse
 			'/(matr|vert|ind)ix|ex$/'  => '\1ices',     // matrix, vertex, index
@@ -220,7 +218,7 @@ if ( ! function_exists('humanize'))
 	 */
 	function humanize($str, $separator = '_')
 	{
-		return ucwords(preg_replace('/['.preg_quote($separator).']+/', ' ', trim(MB_ENABLED ? mb_strtolower($str) : strtolower($str))));
+		return ucwords(preg_replace('/['.$separator.']+/', ' ', trim(MB_ENABLED ? mb_strtolower($str) : strtolower($str))));
 	}
 }
 
@@ -239,37 +237,8 @@ if ( ! function_exists('is_countable'))
 		return ! in_array(
 			strtolower($word),
 			array(
-				'audio',
-				'bison',
-				'chassis',
-				'compensation',
-				'coreopsis',
-				'data',
-				'deer',
-				'education',
-				'emoji',
-				'equipment',
-				'fish',
-				'furniture',
-				'gold',
-				'information',
-				'knowledge',
-				'love',
-				'rain',
-				'money',
-				'moose',
-				'nutrition',
-				'offspring',
-				'plankton',
-				'pokemon',
-				'police',
-				'rice',
-				'series',
-				'sheep',
-				'species',
-				'swine',
-				'traffic',
-				'wheat'
+				'equipment', 'information', 'rice', 'money',
+				'species', 'series', 'fish', 'meta'
 			)
 		);
 	}
