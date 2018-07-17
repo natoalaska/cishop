@@ -500,3 +500,110 @@ ERROR - 2018-07-17 10:29:12 --> 404 Page Not Found: ../modules/templates/control
 ERROR - 2018-07-17 10:29:17 --> 404 Page Not Found: /index
 ERROR - 2018-07-17 10:29:19 --> 404 Page Not Found: ../modules/templates/controllers/Templates/build-non-gmail-inbox.js.map
 ERROR - 2018-07-17 10:44:24 --> 404 Page Not Found: ../modules/templates/controllers/Templates/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 12:00:11 --> Severity: 8192 --> The each() function is deprecated. This message will be suppressed on further calls C:\xampp\htdocs\cishop\application\third_party\MX\Modules.php 83
+ERROR - 2018-07-17 12:00:43 --> Severity: 8192 --> The each() function is deprecated. This message will be suppressed on further calls C:\xampp\htdocs\cishop\application\third_party\MX\Modules.php 83
+ERROR - 2018-07-17 12:00:43 --> Severity: Warning --> Use of undefined constant TEUE - assumed 'TEUE' (this will throw an Error in a future version of PHP) C:\xampp\htdocs\cishop\application\modules\site_security\controllers\site_security.php 10
+ERROR - 2018-07-17 12:02:45 --> Severity: Warning --> Use of undefined constant TEUE - assumed 'TEUE' (this will throw an Error in a future version of PHP) C:\xampp\htdocs\cishop\application\modules\site_security\controllers\site_security.php 10
+ERROR - 2018-07-17 12:05:44 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 12:05:50 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 12:06:03 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 12:06:05 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 12:11:56 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 12:13:16 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 12:13:17 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 13:36:05 --> Severity: Notice --> Undefined variable: title C:\xampp\htdocs\cishop\application\modules\store_items\views\create.php 35
+ERROR - 2018-07-17 14:34:40 --> Severity: error --> Exception: Call to undefined function issnumeric() C:\xampp\htdocs\cishop\application\modules\store_items\controllers\store_items.php 35
+ERROR - 2018-07-17 14:34:40 --> Severity: Error --> Uncaught TypeError: Argument 1 passed to CI_Exceptions::show_exception() must be an instance of Exception, instance of Error given, called in C:\xampp\htdocs\cishop\system\core\Common.php on line 658 and defined in C:\xampp\htdocs\cishop\system\core\Exceptions.php:190
+Stack trace:
+#0 C:\xampp\htdocs\cishop\system\core\Common.php(658): CI_Exceptions->show_exception(Object(Error))
+#1 [internal function]: _exception_handler(Object(Error))
+#2 {main}
+  thrown C:\xampp\htdocs\cishop\system\core\Exceptions.php 190
+ERROR - 2018-07-17 14:36:57 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 14:37:42 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 14:37:52 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 14:38:08 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 14:38:09 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 14:38:11 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 14:38:12 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 14:39:21 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 14:39:22 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 14:39:50 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 14:39:51 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 14:40:24 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 14:40:25 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 14:40:26 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 14:40:28 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 14:40:43 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 14:40:44 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 14:40:47 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 14:40:48 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 14:54:47 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 14:54:54 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 14:54:55 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 14:56:43 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 14:56:44 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 14:58:51 --> Severity: Notice --> Array to string conversion C:\xampp\htdocs\cishop\application\modules\store_items\controllers\store_items.php 32
+ERROR - 2018-07-17 14:58:51 --> Severity: Notice --> Array to string conversion C:\xampp\htdocs\cishop\application\modules\store_items\controllers\store_items.php 32
+ERROR - 2018-07-17 14:58:51 --> Severity: Warning --> Illegal string offset 'headline' C:\xampp\htdocs\cishop\application\modules\store_items\controllers\store_items.php 36
+ERROR - 2018-07-17 14:58:51 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 14:58:52 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 14:59:03 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 14:59:04 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 15:11:41 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 15:11:42 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 15:11:45 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 15:11:46 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 15:12:07 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 15:12:09 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 15:12:15 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 15:12:16 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 15:12:30 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 15:12:31 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 15:12:34 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 15:12:35 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 15:13:08 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 15:13:32 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 15:13:45 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 15:13:53 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 15:14:10 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 15:14:27 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 15:14:34 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 15:14:36 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 15:14:38 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 15:14:39 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 15:14:59 --> Severity: Notice --> Array to string conversion C:\xampp\htdocs\cishop\application\modules\store_items\views\create.php 35
+ERROR - 2018-07-17 15:14:59 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 15:15:00 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 15:15:11 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 15:15:12 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 15:15:19 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 15:15:20 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 15:15:41 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 15:15:42 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 15:15:47 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 15:15:48 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 15:16:02 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 15:16:03 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 15:17:11 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 15:17:17 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 15:17:19 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 15:17:28 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 15:17:57 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 15:17:58 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 15:18:01 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 15:18:02 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 15:18:04 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 15:18:05 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 15:18:15 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 15:18:16 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 15:19:21 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 15:19:22 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 15:19:26 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 15:19:27 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 15:19:28 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 15:19:30 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 15:19:35 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 15:19:36 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
+ERROR - 2018-07-17 15:19:39 --> 404 Page Not Found: /index
+ERROR - 2018-07-17 15:19:40 --> 404 Page Not Found: ../modules/store_items/controllers/Store_items/build-non-gmail-inbox.js.map
