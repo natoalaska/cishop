@@ -7,7 +7,7 @@ class Templates extends MX_Controller {
     }
 
     function test() {
-        $this->public_bootstrap(NULL);
+        $this->admin(NULL);
     }
 
     function public_bootstrap($data) {
