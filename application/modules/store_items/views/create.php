@@ -16,6 +16,9 @@
 
 <h1><?php echo $headline; ?></h1>
 <hr>
+<?php echo validation_errors("<div class='alert alert-error' role='alert'>","</div>"); ?>
+<?php //echo isset($flash) ? $flash : ''; ?>
+<?php echo $this->session->flashdata('item'); ?>
 <div class="row-fluid sortable">
     <div class="box span12">
     	<div class="box-header" data-original-title>
@@ -32,26 +35,26 @@
     			<div class="control-group">
     			  <label class="control-label" for="title">Title</label>
     			  <div class="controls">
-    				<input type="text" class="span6" name="title" value="<?php echo isset($item['title']) ? $item['title']: ''; ?>">
+    				<input type="text" class="span6" name="title" value="<?php echo isset($title) ? $title : ''; ?>">
     			  </div>
     			</div>
                 <div class="control-group">
     			  <label class="control-label" for="price">Price</label>
     			  <div class="controls">
-    				<input type="text" class="span6" name="price" value="<?php echo isset($item['price']) ? $item['price']: ''; ?>">
+    				<input type="text" class="span6" name="price" value="<?php echo isset($price) ? $price : ''; ?>">
     			  </div>
     			</div>
                 <div class="control-group">
     			  <label class="control-label" for="was_price">Previous Price</label>
     			  <div class="controls">
-    				<input type="text" class="span6" name="was_price" value="<?php echo isset($item['was_price']) ? $item['was_price']: ''; ?>">
+    				<input type="text" class="span6" name="was_price" value="<?php echo isset($was_price) ? $was_price : ''; ?>">
     			  </div>
     			</div>
 
     			<div class="control-group">
     			  <label class="control-label" for="description">Description</label>
     			  <div class="controls">
-    				<textarea class="cleditor" name="description" id="description" rows="3"><?php echo isset($item['description']) ? $item['description']: ''; ?></textarea>
+    				<textarea class="cleditor" name="description" id="description" rows="3"><?php echo isset($description) ? $description : ''; ?></textarea>
     			  </div>
     			</div>
     			<div class="form-actions">

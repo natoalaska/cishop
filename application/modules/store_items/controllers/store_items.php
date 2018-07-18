@@ -10,30 +10,51 @@ class Store_items extends MX_Controller {
 
     function manage() {
         Modules::run('site_security/_is_admin');
-
+        $this->session->set_userdata('test', 'test');
         $data['view_module'] = 'store_items';
         $data['view_file'] = "manage";
         echo Modules::run('templates/admin', $data);
     }
 
-    function create() {
+    // TODO: work on optimizing. consider having separate funciton to load form and to add/update data
+    function create($id = null) {
         Modules::run('site_security/_is_admin');
-
-        $data['view_module'] = 'store_items';
-        $data['view_file'] = "create";
 
         $submit = $this->input->post('submit', TRUE);
 
-        $update_id = $this->uri->segment(3);
+        $update_id = $id;
 
         if ($submit == "submit") {
+            $this->load->library('form_validation');
+            $this->form_validation->set_rules('title', 'Item Title', 'required|max_length[240]');
+            $this->form_validation->set_rules('price', 'Item Price', 'required|numeric');
+            $this->form_validation->set_rules('was_price', 'Previous Price', 'numeric');
+            $this->form_validation->set_rules('description', 'Item Description', 'required');
 
+            if ($this->form_validation->run() == TRUE) {
+                $data = $this->fetch_data_from_post();
+
+                if (is_numeric($update_id)) {
+                    // update item
+                    $this->_update($update_id, $data);
+                    $value = "<div class='alert alert-success' role='alert'>The item details were successfully updated.</div>";
+                    $this->session->set_flashdata('item', $value);
+                } else {
+                    // insert item
+                    $this->_insert($data);
+                    $update_id = $this->get_max();
+
+                    $value = "<div class='alert alert-success' role='alert'>The item was successfully added.</div>";
+                    $this->session->set_flashdata('item', $value);
+                    redirect("store_items/create/$update_id");
+                }
+            }
         }
 
         if ((is_numeric($update_id)) && ($submit != "submit")) {
-            $data['item'] = $this->fetch_data_from_db($update_id);
+            $data = $this->fetch_data_from_db($update_id);
         } else {
-            $data['item'] = $this->fetch_data_from_post();
+            $data = $this->fetch_data_from_post();
         }
 
         if (!is_numeric($update_id)) {
@@ -41,6 +62,9 @@ class Store_items extends MX_Controller {
         } else {
             $data['headline'] = "Update Item Details";
         }
+
+        $data['view_module'] = 'store_items';
+        $data['view_file'] = "create";
 
         echo Modules::run('templates/admin', $data);
     }
