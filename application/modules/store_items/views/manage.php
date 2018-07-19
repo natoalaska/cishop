@@ -11,6 +11,9 @@
 
 <h1>Manage Items</h1>
 <hr>
+
+<?php echo $this->session->flashdata('item'); ?>
+
 <p><a href="<?php echo base_url('store_items/create'); ?>" class="btn btn-primary">Create Item</a></p>
 
 <div class="row-fluid sortable">

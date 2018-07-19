@@ -48,8 +48,8 @@
                         </div>
                     </div>
                     <div class="form-actions">
-                        <button type="submit" name="submit" class="btn btn-primary" name="submit" value="submit">Add</button>
-                        <button type="submit" class="btn" name="submit" value="finished">Finished</button>
+                        <button type="submit" class="btn btn-primary" name="submit" value="submit">Add</button>
+                        <button type="submit" class="btn btn-success" name="submit" value="finished">Finished</button>
                     </div>
                 </fieldset>
             </form>

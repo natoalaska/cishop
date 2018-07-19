@@ -44,11 +44,10 @@
 	        		</div>
 	        	</div>
 	        	<div class="form-actions">
-	        		<button type="submit" class="btn-primary" name="submit" value="submit">Upload Image</button>
-	        		<button type="submit" class="btn" name="submit" value="cancel">Cancel</button>
+	        		<button type="submit" class="btn btn-primary" name="submit" value="submit">Upload Image</button>
+	        		<a href="<?php echo base_url("store_items/create/$update_id"); ?>" class="btn btn-default">Cancel</a>
 	        	</div>
-			</form>    
+			</form>
         </div>
     </div>
 </div>
-

@@ -141,10 +141,6 @@ class Store_items extends MX_Controller {
 
         $submit = $this->input->post('submit', TRUE);
 
-        if ($submit == "cancel") {
-            redirect('store_items/manage');
-        }
-
         if ($submit == "submit") {
 
             $this->form_validation->set_rules('title', 'Item Title', 'required|max_length[240]|callback_item_check'); // TODO: change callback to is_unique???
@@ -191,6 +187,66 @@ class Store_items extends MX_Controller {
         $data['view_file'] = "create";
 
         echo Modules::run('templates/admin', $data);
+    }
+
+    function deleteconf($id) {
+        if (!is_numeric($id) || $id == null) {
+            Modules::run('site_security/not_allowed');
+        }
+        Modules::run('site_security/_is_admin');
+
+        $data['headline'] = "Delete Item";
+        $data['update_id'] = $id;
+        $data['view_module'] = 'store_items';
+        $data['view_file'] = "deleteconf";
+
+        echo Modules::run('templates/admin', $data);
+    }
+
+    function delete($id) {
+        if (!is_numeric($id) || $id == null) {
+            Modules::run('site_security/not_allowed');
+        }
+        Modules::run('site_security/_is_admin');
+
+        $value = "<div class='alert alert-success' role='alert'>The item was successfully deleted.</div>";
+        $this->session->set_flashdata('item', $value);
+
+        $this->_process_delete($id);
+
+        redirect('store_items/manage');
+    }
+
+    function _process_delete($id) {
+        // delete item colors
+        Modules::run('store_item_colors/_delete_for_item', $id);
+
+        // delete item sizes
+        Modules::run('store_item_sizes/_delete_for_item', $id);
+
+        // delete item image
+        $data = $this->fetch_data_from_db($id);
+        $big_pic = $data['big_pic'];
+        $small_pic = $data['small_pic'];
+
+        $big_pic_path = "./assets/images/big_pics/$big_pic";
+        $small_pic_path = "./assets/images/small_pics/$small_pic";
+
+        if (file_exists($big_pic_path)) {
+            unlink($big_pic_path);
+        }
+
+        if (file_exists($small_pic_path)) {
+            unlink($small_pic_path);
+        }
+
+        unset($data);
+        $data['big_pic'] = "";
+        $data['small_pic'] = "";
+        $this->_update($id, $data);
+
+        // delete item
+        $this->_delete($id);
     }
 
     function fetch_data_from_db($id) {

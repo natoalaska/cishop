@@ -38,7 +38,7 @@
             <a href="<?php echo base_url("store_item_colors/update/$update_id"); ?>" class="btn btn-primary">Update Item Color</a>
             <a href="<?php echo base_url("store_item_sizes/update/$update_id"); ?>" class="btn btn-primary">Update Item Size</a>
             <a href="<?php echo base_url('store_items'); ?>" class="btn btn-primary">Update Item Category</a>
-            <a href="<?php echo base_url('store_items'); ?>" class="btn btn-danger">Delete Item</a>
+            <a href="<?php echo base_url("store_items/deleteconf/$update_id"); ?>" class="btn btn-danger">Delete Item</a>
         </div>
     </div>
 </div>
@@ -52,7 +52,7 @@
             </div>
     	</div>
     	<div class="box-content">
-    		<form class="form-horizontal" action="<?php echo base_url('store_items/submit/' . $update_id); ?>" method="post">
+    		<form class="form-horizontal" action="<?php echo base_url('store_items/create/' . $update_id); ?>" method="post">
     		  <fieldset>
     			<div class="control-group">
     			  <label class="control-label" for="title">Title</label>
@@ -94,7 +94,7 @@
     			</div>
     			<div class="form-actions">
     			  <button type="submit" name="submit" class="btn btn-primary" value="submit">Save changes</button>
-    			  <button type="submit" class="btn" name="submit" value="cancel">Cancel</button>
+    			  <a href="<?php echo base_url("store_items/manage"); ?>" class="btn btn-default">Cancel</a>
     			</div>
     		  </fieldset>
     		</form>
@@ -102,7 +102,7 @@
     </div><!--/span-->
 </div><!--/row-->
 
-<?php if ($big_pic != "") { ?>
+<?php if (isset($big_pic) && $big_pic != "") { ?>
 <div class="row-fluid">
     <div class="box span12">
         <div class="box-header" data-original-title>

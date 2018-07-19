@@ -70,6 +70,11 @@ class Store_item_sizes extends MX_Controller {
         redirect("store_item_sizes/update/$item_id");
     }
 
+    function _delete_for_item($id) {
+        $query = "DELETE FROM store_item_sizes WHERE item_id = $id";
+        $this->_custom_query($query);
+    }
+
     function get($order_by) {
         $query = $this->{$this->model}->get($order_by);
         return $query;
