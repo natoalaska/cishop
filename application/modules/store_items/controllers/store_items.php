@@ -40,6 +40,50 @@ class Store_items extends MX_Controller {
         echo Modules::run('templates/admin', $data);
     }
 
+    function _generate_thumbnail($file_name) {
+        $config['image_library']    = 'gd2';
+        $config['source_image']     = './assets/images/big_pics/' . $file_name;
+        $config['new_image']      = './assets/images/small_pics/';
+        $config['maintain_ratio']   = TRUE;
+        $config['width']            = 200;
+        $config['height']           = 200;
+
+        $this->load->library('image_lib', $config);
+        $this->image_lib->resize();
+    }
+
+    function delete_image($id) {
+        if (!is_numeric($id) || $id == null) {
+            Modules::run('site_security/not_allowed');
+        }
+        Modules::run('site_security/_is_admin');
+
+        $data = $this->fetch_data_from_db($id);
+        $big_pic = $data['big_pic'];
+        $small_pic = $data['small_pic'];
+
+        $big_pic_path = "./assets/images/big_pics/$big_pic";
+        $small_pic_path = "./assets/images/small_pics/$small_pic";
+
+        if (file_exists($big_pic_path)) {
+            unlink($big_pic_path);
+        }
+
+        if (file_exists($small_pic_path)) {
+            unlink($small_pic_path);
+        }
+
+        unset($data);
+        $data['big_pic'] = "";
+        $data['small_pic'] = "";
+        $this->_update($id, $data);
+
+        $value = "<div class='alert alert-success' role='alert'>Your image was successfully deleted.</div>";
+        $this->session->set_flashdata('item', $value);
+
+        redirect("store_items/create/$id");
+    }
+
     # TODO: have the error redirect back to upload_image with flashdata.
     function do_upload($id = null) {
         if (!is_numeric($id) || $id == null) {
@@ -53,11 +97,11 @@ class Store_items extends MX_Controller {
             redirect('store_items/create/' . $id);
         }
 
-        $config['upload_path']  = './assets/images/big_pics/';
-        $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size']     = 150;
-        $config['max_width']    = 1024;
-        $config['max_height']   = 768;
+        $config['upload_path']      = './assets/images/big_pics/';
+        $config['allowed_types']    = 'gif|jpg|png';
+        $config['max_size']         = 150;
+        $config['max_width']        = 1024;
+        $config['max_height']       = 768;
 
         $this->load->library('upload', $config);
 
@@ -72,6 +116,15 @@ class Store_items extends MX_Controller {
         } else {
             $value = "<div class='alert alert-success' role='alert'>Your image was successfully uploaded.</div>";
             $this->session->set_flashdata('item', $value);
+            $data = array('upload_data' => $this->upload->data());
+
+            $upload_data = $data['upload_data'];
+            $file_name = $upload_data['file_name'];
+            $this->_generate_thumbnail($file_name);
+
+            $update_data['big_pic'] = $file_name;
+            $update_data['small_pic'] = $file_name;
+            $this->_update($id, $update_data);
 
             $data['headline'] = "Upload Success";
             $data['update_id'] = $id;
@@ -141,6 +194,10 @@ class Store_items extends MX_Controller {
     }
 
     function fetch_data_from_db($id) {
+        if (!is_numeric($id)) {
+            Modules::run('site_security/not_allowed');
+        }
+
         $query = $this->get_where($id);
         foreach($query->result() as $row) {
             $data['title'] = $row->title;

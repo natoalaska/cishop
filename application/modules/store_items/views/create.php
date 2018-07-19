@@ -52,7 +52,7 @@
             </div>
     	</div>
     	<div class="box-content">
-    		<form class="form-horizontal" action="<?php echo base_url('store_items/create/' . $update_id); ?>" method="post">
+    		<form class="form-horizontal" action="<?php echo base_url('store_items/submit/' . $update_id); ?>" method="post">
     		  <fieldset>
     			<div class="control-group">
     			  <label class="control-label" for="title">Title</label>
