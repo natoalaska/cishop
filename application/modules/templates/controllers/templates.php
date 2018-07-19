@@ -2,9 +2,21 @@
 
 class Templates extends MX_Controller {
 
+	public function test() {
+		$this->public_jqm();
+	}
+
 	public function admin($data = NULL) {
 		$this->load->view('admin/index', $data);
 	}
+
+	function public_bootstrap($data = NULL) {
+        $this->load->view('public_bootstrap/index', $data);
+    }
+
+	function public_jqm($data = NULL) {
+        $this->load->view('public_jqm/index', $data);
+    }
 
 }
 

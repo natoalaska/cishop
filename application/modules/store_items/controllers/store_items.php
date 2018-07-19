@@ -10,9 +10,22 @@ class Store_items extends MX_Controller {
         $this->load->library('form_validation');
     }
 
+    function view($id) {
+        if (!is_numeric($id)) {
+            Modules::run('site_security/not_allowed');
+        }
+
+        $data = $this->fetch_data_from_db($id);
+
+        $data['view_module'] = 'store_items';
+        $data['view_file'] = "view";
+        $data['items'] = $this->get('title');
+        echo Modules::run('templates/public_bootstrap', $data);
+    }
+
     function manage() {
         Modules::run('site_security/_is_admin');
-        $this->session->set_userdata('test', 'test');
+
         $data['view_module'] = 'store_items';
         $data['view_file'] = "manage";
         $data['items'] = $this->get('title');
