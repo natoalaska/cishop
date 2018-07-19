@@ -1,9 +1,4 @@
-This is the combination between 3 CodeIgniter and HMVC Modular Extension (create
- This version is already configured to work with HMVC, Eliminating the need to download the files HMVC on Bitbucket and copy to the Corresponding folders.
-
- Just download this version and start using.
+This is my Online Store build with Codeigniter. This initially will be following the [Build an online shop with Codeigniter](https://www.youtube.com/playlist?list=PLBEpR3pmwCayNcTCUWlUToK4qIQfFQCCm) by [David Connelly](https://www.youtube.com/channel/UCtsojFV90CDh7uABAssuITw). I hope to expand on what I learned and do more with it.
 
 # TODOs
-
-* Create breadcrumb function for all admin pages
-* Create modals for add/update/delete for admin pages
+Go to https://github.com/natoalaska/cishop/issues/1 to see a list of TODOs.
