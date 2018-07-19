@@ -19,6 +19,69 @@ class Store_items extends MX_Controller {
         echo Modules::run('templates/admin', $data);
     }
 
+    # TODO: get this to work with file manager.
+    function upload_image($id = null) {
+        if (!is_numeric($id) || $id == null) {
+            Modules::run('site_security/not_allowed');
+        }
+        Modules::run('site_security/_is_admin');
+
+        $submit = $this->input->post('submit', TRUE);
+
+        if ($submit == "cancel") {
+            redirect('store_items/create/' . $id);
+        }
+
+        $data['headline'] = "Upload Image";
+        $data['update_id'] = $id;
+        $data['view_module'] = 'store_items';
+        $data['view_file'] = "upload_image";
+
+        echo Modules::run('templates/admin', $data);
+    }
+
+    # TODO: have the error redirect back to upload_image with flashdata.
+    function do_upload($id = null) {
+        if (!is_numeric($id) || $id == null) {
+            Modules::run('site_security/not_allowed');
+        }
+        Modules::run('site_security/_is_admin');
+
+        $submit = $this->input->post('submit', TRUE);
+
+        if ($submit == "cancel") {
+            redirect('store_items/create/' . $id);
+        }
+
+        $config['upload_path']  = './assets/images/big_pics/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size']     = 150;
+        $config['max_width']    = 1024;
+        $config['max_height']   = 768;
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('userfile')) {
+            $data['error'] = array('error' => $this->upload->display_errors("<div class='alert alert-error' role='alert'>","</div>"));
+            $data['headline'] = "Upload Image";
+            $data['update_id'] = $id;
+            $data['view_module'] = 'store_items';
+            $data['view_file'] = "upload_image";
+
+            echo Modules::run('templates/admin', $data);
+        } else {
+            $value = "<div class='alert alert-success' role='alert'>Your image was successfully uploaded.</div>";
+            $this->session->set_flashdata('item', $value);
+
+            $data['headline'] = "Upload Success";
+            $data['update_id'] = $id;
+            $data['view_module'] = 'store_items';
+            $data['view_file'] = "upload_success";
+
+            echo Modules::run('templates/admin', $data);
+        }
+    }
+
     # TODO: work on optimizing. consider having separate funciton to load form and to add/update data
     function create($id = null) {
         Modules::run('site_security/_is_admin');
