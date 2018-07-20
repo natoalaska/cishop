@@ -8,5 +8,7 @@
             <?php echo nl2br($description); ?>
         </div>
     </div>
-    <div class="col-md-3">Test</div>
+    <div class="col-md-3">
+        <?php echo Modules::run('cart/_draw_add_to_cart', $item_id); ?>
+    </div>
 </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 19, 2018 at 01:50 AM
+-- Generation Time: Jul 20, 2018 at 02:04 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -35,8 +35,6 @@ CREATE TABLE `site_sessions` (
   `data` blob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
 -- Table structure for table `store_items`
 --
@@ -52,6 +50,56 @@ CREATE TABLE `store_items` (
   `was_price` decimal(7,2) NOT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `store_items`
+--
+
+INSERT INTO `store_items` (`id`, `title`, `url`, `price`, `description`, `big_pic`, `small_pic`, `was_price`, `status`) VALUES
+(1, 'First Item', 'First-Item', '100.00', 'This is a test.', 'rachel.jpg', 'rachel.jpg', '0.00', 1),
+(3, 'Second Item', 'Second-Item', '150.00', 'Second item description.', '', '', '200.00', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `store_item_colors`
+--
+
+CREATE TABLE `store_item_colors` (
+  `id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `color` varchar(120) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `store_item_colors`
+--
+
+INSERT INTO `store_item_colors` (`id`, `item_id`, `color`) VALUES
+(1, 1, 'White'),
+(2, 1, 'Black'),
+(4, 1, 'Red');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `store_item_sizes`
+--
+
+CREATE TABLE `store_item_sizes` (
+  `id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `size` varchar(120) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `store_item_sizes`
+--
+
+INSERT INTO `store_item_sizes` (`id`, `item_id`, `size`) VALUES
+(1, 1, 'Small'),
+(2, 1, 'Medium'),
+(3, 1, 'Large');
 
 --
 -- Indexes for dumped tables
@@ -71,6 +119,18 @@ ALTER TABLE `store_items`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `store_item_colors`
+--
+ALTER TABLE `store_item_colors`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `store_item_sizes`
+--
+ALTER TABLE `store_item_sizes`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -78,7 +138,19 @@ ALTER TABLE `store_items`
 -- AUTO_INCREMENT for table `store_items`
 --
 ALTER TABLE `store_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `store_item_colors`
+--
+ALTER TABLE `store_item_colors`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `store_item_sizes`
+--
+ALTER TABLE `store_item_sizes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

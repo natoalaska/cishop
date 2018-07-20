@@ -17,9 +17,9 @@ class Store_items extends MX_Controller {
 
         $data = $this->fetch_data_from_db($id);
 
+        $data['item_id'] = $id;
         $data['view_module'] = 'store_items';
         $data['view_file'] = "view";
-        $data['items'] = $this->get('title');
         echo Modules::run('templates/public_bootstrap', $data);
     }
 
