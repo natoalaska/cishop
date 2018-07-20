@@ -43,7 +43,7 @@ class Store_item_colors extends MX_Controller {
                 $this->_insert($data);
 
                 $value = "<div class='alert alert-success' role='alert'>The item color has been added.</div>";
-                $this->session->set_flashdata('item', $value);
+                $this->session->set_flashdata('alert', $value);
 
             }
         }
@@ -65,7 +65,7 @@ class Store_item_colors extends MX_Controller {
         $this->_delete($id);
 
         $value = "<div class='alert alert-success' role='alert'>The item color has been deleted.</div>";
-        $this->session->set_flashdata('item', $value);
+        $this->session->set_flashdata('alert', $value);
 
         redirect("store_item_colors/update/$item_id");
     }

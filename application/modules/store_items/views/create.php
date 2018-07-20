@@ -18,7 +18,7 @@
 <hr>
 
 <?php echo validation_errors("<div class='alert alert-error' role='alert'>","</div>"); ?>
-<?php echo $this->session->flashdata('item'); ?>
+<?php echo $this->session->flashdata('alert'); ?>
 
 <?php if (is_numeric($update_id) ) { ?>
 <div class="row-fluid">

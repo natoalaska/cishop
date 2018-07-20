@@ -17,7 +17,7 @@
 <h1><?php echo $headline; ?></h1>
 <hr>
 
-<?php echo $this->session->flashdata('item'); ?>
+<?php echo $this->session->flashdata('alert'); ?>
 
 <div class="row-fluid sortable">
     <div class="box span12">

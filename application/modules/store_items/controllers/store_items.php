@@ -92,7 +92,7 @@ class Store_items extends MX_Controller {
         $this->_update($id, $data);
 
         $value = "<div class='alert alert-success' role='alert'>Your image was successfully deleted.</div>";
-        $this->session->set_flashdata('item', $value);
+        $this->session->set_flashdata('alert', $value);
 
         redirect("store_items/create/$id");
     }
@@ -128,7 +128,7 @@ class Store_items extends MX_Controller {
             echo Modules::run('templates/admin', $data);
         } else {
             $value = "<div class='alert alert-success' role='alert'>Your image was successfully uploaded.</div>";
-            $this->session->set_flashdata('item', $value);
+            $this->session->set_flashdata('alert', $value);
             $data = array('upload_data' => $this->upload->data());
 
             $upload_data = $data['upload_data'];
@@ -170,14 +170,14 @@ class Store_items extends MX_Controller {
                     // update item
                     $this->_update($id, $data);
                     $value = "<div class='alert alert-success' role='alert'>The item details were successfully updated.</div>";
-                    $this->session->set_flashdata('item', $value);
+                    $this->session->set_flashdata('alert', $value);
                 } else {
                     // insert item
                     $this->_insert($data);
                     $update_id = $this->get_max();
 
                     $value = "<div class='alert alert-success' role='alert'>The item was successfully added.</div>";
-                    $this->session->set_flashdata('item', $value);
+                    $this->session->set_flashdata('alert', $value);
                     redirect("store_items/create/$update_id");
                 }
             }
@@ -223,7 +223,7 @@ class Store_items extends MX_Controller {
         Modules::run('site_security/_is_admin');
 
         $value = "<div class='alert alert-success' role='alert'>The item was successfully deleted.</div>";
-        $this->session->set_flashdata('item', $value);
+        $this->session->set_flashdata('alert', $value);
 
         $this->_process_delete($id);
 
