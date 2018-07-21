@@ -12,7 +12,6 @@
 
 <h1>Manage Accounts</h1>
 <hr>
-
 <?php echo $this->session->flashdata('alert'); ?>
 
 <p><a href="<?php echo base_url('store_accounts/create'); ?>" class="btn btn-primary">Create Account</a></p>
@@ -43,7 +42,7 @@
     				<td><?php echo $row->firstname; ?></td>
     				<td><?php echo $row->lastname; ?></td>
     				<td><?php echo $row->company; ?></td>
-    				<td><?php echo $row->date_made; ?></td>
+    				<td><?php echo Modules::run('timedate/get_nice_date', $row->date_made, 'cool'); ?></td>
     				<!-- <td class="center">
                         <?php
                             if ($row->status == 1) { ?>

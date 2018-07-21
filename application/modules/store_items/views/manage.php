@@ -12,7 +12,6 @@
 
 <h1>Manage Items</h1>
 <hr>
-
 <?php echo $this->session->flashdata('alert'); ?>
 
 <p><a href="<?php echo base_url('store_items/create'); ?>" class="btn btn-primary">Create Item</a></p>
@@ -53,7 +52,7 @@
 
     				</td>
     				<td class="center">
-    					<a class="btn btn-success" href="#">
+    					<a class="btn btn-success" href="<?php echo base_url("store_items/view/$row->id"); ?>">
     						<i class="halflings-icon white zoom-in"></i>
     					</a>
     					<a class="btn btn-info" href="<?php echo base_url("store_items/create/$row->id"); ?>">

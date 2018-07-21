@@ -27,7 +27,9 @@ class Store_accounts extends MX_Controller {
             $this->form_validation->set_rules('firstname', 'First Name', 'required');
 
             if ($this->form_validation->run($this) == TRUE) {
-                $data = $this->fetch_data_from_post();
+                $data = $this->fetch_data('post');
+                // print_r($data);
+                // die;
                 //$data['url'] = url_title($data['title']);
 
                 if (is_numeric($id)) {
@@ -37,8 +39,11 @@ class Store_accounts extends MX_Controller {
                     $this->session->set_flashdata('alert', $value);
                 } else {
                     // insert account
+                    $data['date_made'] = time();
                     $this->_insert($data);
                     $update_id = $this->get_max();
+
+
 
                     $value = "<div class='alert alert-success' role='alert'>The account was successfully added.</div>";
                     $this->session->set_flashdata('alert', $value);
@@ -48,9 +53,9 @@ class Store_accounts extends MX_Controller {
         }
 
         if ((is_numeric($id)) && ($submit != "submit")) {
-            $data = $this->fetch_data_from_db($id);
+            $data = $this->fetch_data('db', $id, array('pword', 'date_made'));
         } else {
-            $data = $this->fetch_data_from_post();
+            $data = $this->fetch_data('post', NULL, array('pword', 'date_made'));
         }
 
         if (!is_numeric($id)) {
@@ -66,42 +71,25 @@ class Store_accounts extends MX_Controller {
         echo Modules::run('templates/admin', $data);
     }
 
-    function fetch_data_from_db($id) {
-        if (!is_numeric($id)) {
+    function deleteconf($id) {
+        if (!is_numeric($id) || $id == null) {
             Modules::run('site_security/not_allowed');
         }
+        Modules::run('site_security/_is_admin');
 
-        // $data['firstname'] = $row->firstname;
-        // $data['lastname'] = $row->lastname;
-        // $data['company'] = $row->company;
-        // $data['address1'] = $row->address1;
-        // $data['address2'] = $row->address2;
-        // $data['town'] = $row->town;
-        // $data['country'] = $row->country;
-        // $data['postcode'] = $row->postcode;
-        // $data['telnum'] = $row->telnum;
-        // $data['email'] = $row->email;
-        // $data['date_made'] = $row->date_made;
-        // $data['pword'] = $row->pword;
-        $data = $this->autogen('db');
+        $data['headline'] = "Delete Account";
+        $data['update_id'] = $id;
+        $data['view_module'] = 'store_accounts';
+        $data['view_file'] = "deleteconf";
 
-        return $data;
-    }
-
-    function fetch_data_from_post() {
-        // $data['firstname'] = $this->input->post('firstname', TRUE);
-        // $data['lastname'] = $this->input->post('lastname', TRUE);
-        // $data['was_price'] = $this->input->post('was_price', TRUE);
-        // $data['description'] = $this->input->post('description', TRUE);
-        // $data['status'] = $this->input->post('status', TRUE);
-        $data = $this->autogen('post');
-
-        return $data;
+        echo Modules::run('templates/admin', $data);
     }
 
     # TODO: add this to a site_function
     // $type = post or db
-    function autogen($type, $id = NULL) {
+    function fetch_data($type, $id = NULL, $ignore = NULL) {
+        $ignore[] = 'id';
+
         $sql = "SHOW COLUMNS FROM store_accounts";
         $query = $this->_custom_query($sql);
 
@@ -111,7 +99,7 @@ class Store_accounts extends MX_Controller {
 
         foreach($query->result() as $row) {
             $column_name = $row->Field;
-            if ($column_name != 'id') {
+            if (!in_array($column_name, $ignore)) {
                 if ($type == 'post') $data[$column_name] = $this->input->post($column_name, TRUE);
                 if ($type == 'db') {
                     if (isset($db_query) && $db_query->num_rows() > 0) {
