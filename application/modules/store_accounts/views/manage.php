@@ -1,15 +1,3 @@
-<ul class="breadcrumb">
-    <li>
-        <i class="icon-home"></i>
-        <a href="<?php echo base_url('admin'); ?>">Home</a>
-        <i class="icon-angle-right"></i>
-    </li>
-    <li>
-        <i class="icon-briefcase"></i>
-        Accounts
-    </li>
-</ul>
-
 <h1>Manage Accounts</h1>
 <hr>
 <?php echo $this->session->flashdata('alert'); ?>

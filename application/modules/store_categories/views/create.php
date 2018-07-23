@@ -7,8 +7,8 @@
 <?php if (is_numeric($update_id) ) { ?>
 <div class="row-fluid">
     <div class="box span12">
-        <div class="box-header" data-original-title>
-            <h2><i class="halflings-icon white edit"></i><span class="break"></span>Item Options</h2>
+        <!-- <div class="box-header" data-original-title>
+            <h2><i class="halflings-icon white edit"></i><span class="break"></span>Category</h2>
             <div class="box-icon">
                 <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
             </div>
@@ -24,20 +24,20 @@
             <a href="<?php echo base_url('store_items'); ?>" class="btn btn-primary">Update Item Category</a>
             <a href="<?php echo base_url("store_items/deleteconf/$update_id"); ?>" class="btn btn-danger">Delete Item</a>
             <a href="<?php echo base_url("store_items/view/$update_id"); ?>" class="btn btn-default">View Item</a>
-        </div>
+        </div> -->
     </div>
 </div>
 <?php } ?>
 <div class="row-fluid">
     <div class="box span12">
     	<div class="box-header" data-original-title>
-    		<h2><i class="halflings-icon white edit"></i><span class="break"></span>Item Details</h2>
+    		<h2><i class="halflings-icon white edit"></i><span class="break"></span>Category Details</h2>
             <div class="box-icon">
                 <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
             </div>
     	</div>
     	<div class="box-content">
-    		<form class="form-horizontal" action="<?php echo base_url('store_items/create/' . $update_id); ?>" method="post">
+    		<form class="form-horizontal" action="<?php echo base_url('store_categories/create/' . $update_id); ?>" method="post">
     		  <fieldset>
     			<div class="control-group">
     			  <label class="control-label" for="title">Title</label>
@@ -45,19 +45,7 @@
     				<input type="text" class="span6" name="title" value="<?php echo isset($title) ? $title : ''; ?>">
     			  </div>
     			</div>
-                <div class="control-group">
-    			  <label class="control-label" for="price">Price</label>
-    			  <div class="controls">
-    				<input type="text" class="span6" name="price" value="<?php echo isset($price) ? $price : ''; ?>">
-    			  </div>
-    			</div>
-                <div class="control-group">
-    			  <label class="control-label" for="was_price">Previous Price</label>
-    			  <div class="controls">
-    				<input type="text" class="span6" name="was_price" value="<?php echo isset($was_price) ? $was_price : ''; ?>">
-    			  </div>
-    			</div>
-                <div class="control-group">
+                <!-- <div class="control-group">
     			  <label class="control-label" for="status">Status</label>
     			  <div class="controls">
                       <?php
@@ -70,35 +58,13 @@
                       echo form_dropdown('status', $options, $status, $additional_data);
                       ?>
                   </div>
-    			</div>
-    			<div class="control-group">
-    			  <label class="control-label" for="description">Description</label>
-    			  <div class="controls">
-    				<textarea class="cleditor" name="description" id="description" rows="3"><?php echo isset($description) ? $description : ''; ?></textarea>
-    			  </div>
-    			</div>
+    			</div> -->
     			<div class="form-actions">
     			  <button type="submit" name="submit" class="btn btn-primary" value="submit">Save changes</button>
-    			  <a href="<?php echo base_url("store_items/manage"); ?>" class="btn btn-default">Cancel</a>
+    			  <a href="<?php echo base_url("store_categories/manage"); ?>" class="btn btn-default">Cancel</a>
     			</div>
     		  </fieldset>
     		</form>
     	</div>
     </div><!--/span-->
 </div><!--/row-->
-
-<?php if (isset($big_pic) && $big_pic != "") { ?>
-<div class="row-fluid">
-    <div class="box span12">
-        <div class="box-header" data-original-title>
-            <h2><i class="halflings-icon white picture"></i><span class="break"></span>Item Image</h2>
-            <div class="box-icon">
-                <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
-            </div>
-        </div>
-        <div class="box-content">
-            <img src="<?php echo base_url("assets/images/big_pics/$big_pic"); ?>" alt="">
-        </div>
-    </div>
-</div>
-<?php } ?>

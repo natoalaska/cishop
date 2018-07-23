@@ -18,4 +18,18 @@ class Site_security extends MX_Controller {
         echo 'not allowed here';
     }
 
+    function _hash_string($str) {
+        $hashed_string = password_hash($str, PASSWORD_BCRYPT, array(
+            'cost' => 11
+        ));
+
+        return $hashed_string;
+    }
+
+    function _verify_hash($str, $hashed_string) {
+        $result = password_verify($str, $hashed_string);
+
+        return $result;
+    }
+
 }

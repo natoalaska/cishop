@@ -1,13 +1,14 @@
-<h1>Manage Items</h1>
+<h1>Manage Categories</h1>
 <hr>
+
 <?php echo $this->session->flashdata('alert'); ?>
 
-<p><a href="<?php echo base_url('store_items/create'); ?>" class="btn btn-primary">Create Item</a></p>
+<p><a href="<?php echo base_url('store_categories/create'); ?>" class="btn btn-primary">Create Category</a></p>
 
 <div class="row-fluid sortable">
     <div class="box span12">
     	<div class="box-header" data-original-title>
-    		<h2><i class="halflings-icon white tag"></i><span class="break"></span>Item Inventory</h2>
+    		<h2><i class="halflings-icon white align-justify"></i><span class="break"></span>Categories</h2>
     		<div class="box-icon">
     			<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
     		</div>
@@ -17,20 +18,17 @@
                 <thead>
                     <tr>
                         <th>Title</th>
-                        <th>Price</th>
-                        <th>Previous Price</th>
-                        <th>Status</th>
+                        <th>Parent Category</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                 <?php
-                foreach($items->result() as $row) { ?>
+                foreach($categories->result() as $row) { ?>
     			<tr>
     				<td><?php echo $row->title; ?></td>
-    				<td><?php echo $row->price; ?></td>
-    				<td><?php echo $row->was_price; ?></td>
-    				<td class="center">
+    				<td><?php echo $row->parent; ?></td>
+    				<!-- <td class="center">
                         <?php
                             if ($row->status == 1) { ?>
                                 <span class="label label-success">Active</span>
@@ -38,7 +36,7 @@
                                 <span class="label label-default">Deactive</span>
                             <?php } ?>
 
-    				</td>
+    				</td> -->
     				<td class="center">
     					<a class="btn btn-success" href="<?php echo base_url("store_items/view/$row->id"); ?>">
     						<i class="halflings-icon white zoom-in"></i>

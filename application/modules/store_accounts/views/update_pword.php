@@ -1,24 +1,3 @@
-<ul class="breadcrumb">
-    <li>
-        <i class="icon-home"></i>
-        <a href="<?php echo base_url('admin'); ?>">Home</a>
-        <i class="icon-angle-right"></i>
-    </li>
-    <li>
-        <a href="<?php echo base_url('store_accounts/manage'); ?>">Store Accounts</a>
-        <i class="icon-angle-right"></i>
-    </li>
-    <li>
-        <i class="icon-edit"></i>
-        <a href="<?php echo base_url('store_accounts/create/<?php echo $update_id; ?>'); ?>">Create</a>
-        <i class="icon-angle-right"></i>
-    </li>
-    <li>
-        <i class="icon-edit"></i>
-        Update Password
-    </li>
-</ul>
-
 <h1><?php echo $headline; ?></h1>
 <hr>
 <?php echo validation_errors("<div class='alert alert-error' role='alert'>","</div>"); ?>
