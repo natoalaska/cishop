@@ -17,6 +17,37 @@ class Store_accounts extends MX_Controller {
         echo Modules::run('templates/admin', $data);
     }
 
+    function update_pword($id) {
+        if (!is_numeric($id)) {
+            redirect('store_accounts/manage');
+        }
+        Modules::run('site_security/_is_admin');
+
+        $submit = $this->input->post('submit', TRUE);
+
+        if ($submit == "submit") {
+
+            $this->form_validation->set_rules('pword', 'Password', 'required|min_length[7]|max_length[35]');
+            $this->form_validation->set_rules('repeat_pword', 'Repeat Password', 'required|matches[pword]');
+
+            if ($this->form_validation->run($this) == TRUE) {
+                $data['pword'] = $this->input->post('pword', TRUE);
+
+                $this->_update($id, $data);
+                $value = "<div class='alert alert-success' role='alert'>The account password was successfully updated.</div>";
+                $this->session->set_flashdata('alert', $value);
+                redirect("store_accounts/create/$id");
+            }
+        }
+
+        $data['headline'] = 'Update Account Password';
+        $data['update_id'] = $id;
+        $data['view_module'] = 'store_accounts';
+        $data['view_file'] = "update_pword";
+
+        echo Modules::run('templates/admin', $data);
+    }
+
     function create($id = null) {
         Modules::run('site_security/_is_admin');
 
@@ -28,9 +59,6 @@ class Store_accounts extends MX_Controller {
 
             if ($this->form_validation->run($this) == TRUE) {
                 $data = $this->fetch_data('post');
-                // print_r($data);
-                // die;
-                //$data['url'] = url_title($data['title']);
 
                 if (is_numeric($id)) {
                     // update account
@@ -42,8 +70,6 @@ class Store_accounts extends MX_Controller {
                     $data['date_made'] = time();
                     $this->_insert($data);
                     $update_id = $this->get_max();
-
-
 
                     $value = "<div class='alert alert-success' role='alert'>The account was successfully added.</div>";
                     $this->session->set_flashdata('alert', $value);
