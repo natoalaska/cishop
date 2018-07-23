@@ -21,7 +21,7 @@
             <?php } ?>
             <a href="<?php echo base_url("store_item_colors/update/$update_id"); ?>" class="btn btn-primary">Update Item Color</a>
             <a href="<?php echo base_url("store_item_sizes/update/$update_id"); ?>" class="btn btn-primary">Update Item Size</a>
-            <a href="<?php echo base_url('store_items'); ?>" class="btn btn-primary">Update Item Category</a>
+            <a href="<?php echo base_url("store_item_categories/update/$update_id"); ?>" class="btn btn-primary">Update Item Category</a>
             <a href="<?php echo base_url("store_items/deleteconf/$update_id"); ?>" class="btn btn-danger">Delete Item</a>
             <a href="<?php echo base_url("store_items/view/$update_id"); ?>" class="btn btn-default">View Item</a>
         </div>

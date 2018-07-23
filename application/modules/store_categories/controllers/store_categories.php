@@ -8,6 +8,36 @@ class Store_categories extends MX_Controller {
         $this->load->model($this->model);
     }
 
+    function _get_parent_cat_title($id) {
+        $data = Modules::run('site_functions/fetch_data', $this->{$this->model}->table, 'db', $id);
+        $parent_cat_id = $data['parent_cat_id'];
+        $parent_cat_title = $this->_get_cat_title($parent_cat_id);
+        return $parent_cat_title;
+    }
+
+    function _get_all_sub_categories_for_dropdown() {
+        $parents = $this->get_where_custom('parent_cat_id', 0);
+
+        $categories[''] = "Please Select...";
+        foreach($parents->result() as $parent) {
+            $sql = "SELECT * FROM store_categories WHERE parent_cat_id = $parent->id ORDER BY title";
+            $query = $this->_custom_query($sql);
+
+            print_r($query->result());
+
+            $sub_categories = array();
+
+            foreach($query->result() as $row) {
+                $sub_categories[$row->id] = $row->title;
+            }
+
+            $categories[$parent->title] = $sub_categories;
+        }
+
+        return $categories;
+    }
+
+
     function sort() {
         Modules::run('site_security/_is_admin');
 

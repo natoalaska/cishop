@@ -237,6 +237,9 @@ class Store_items extends MX_Controller {
         // delete item sizes
         Modules::run('store_item_sizes/_delete_for_item', $id);
 
+        // delete item categories
+        Modules::run('store_item_categories/_delete_for_item', $id);
+
         // delete item image
         $data = Modules::run('site_functions/fetch_data', $this->{$this->model}->table, 'db', $id);
         $big_pic = $data['big_pic'];
