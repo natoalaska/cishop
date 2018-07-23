@@ -15,7 +15,7 @@ class Store_items extends MX_Controller {
             Modules::run('site_security/not_allowed');
         }
 
-        $data = $this->fetch_data_from_db($id);
+        $data = Modules::run('site_functions/fetch_data', $this->{$this->model}->table, 'db', $id);
 
         $data['item_id'] = $id;
         $data['view_module'] = 'store_items';
@@ -71,7 +71,7 @@ class Store_items extends MX_Controller {
         }
         Modules::run('site_security/_is_admin');
 
-        $data = $this->fetch_data_from_db($id);
+        $data = Modules::run('site_functions/fetch_data', $this->{$this->model}->table, 'db', $id);
         $big_pic = $data['big_pic'];
         $small_pic = $data['small_pic'];
 
@@ -163,7 +163,7 @@ class Store_items extends MX_Controller {
             $this->form_validation->set_rules('description', 'Item Description', 'required');
 
             if ($this->form_validation->run($this) == TRUE) {
-                $data = $this->fetch_data_from_post();
+                $data = Modules::run('site_functions/fetch_data', $this->{$this->model}->table, 'post');
                 $data['url'] = url_title($data['title']);
 
                 if (is_numeric($id)) {
@@ -184,9 +184,9 @@ class Store_items extends MX_Controller {
         }
 
         if ((is_numeric($id)) && ($submit != "submit")) {
-            $data = $this->fetch_data_from_db($id);
+            $data = Modules::run('site_functions/fetch_data', $this->{$this->model}->table, 'db', $id);
         } else {
-            $data = $this->fetch_data_from_post();
+            $data = Modules::run('site_functions/fetch_data', $this->{$this->model}->table, 'post');
         }
 
         if (!is_numeric($id)) {
@@ -238,7 +238,7 @@ class Store_items extends MX_Controller {
         Modules::run('store_item_sizes/_delete_for_item', $id);
 
         // delete item image
-        $data = $this->fetch_data_from_db($id);
+        $data = Modules::run('site_functions/fetch_data', $this->{$this->model}->table, 'db', $id);
         $big_pic = $data['big_pic'];
         $small_pic = $data['small_pic'];
 
@@ -260,40 +260,6 @@ class Store_items extends MX_Controller {
 
         // delete item
         $this->_delete($id);
-    }
-
-    function fetch_data_from_db($id) {
-        if (!is_numeric($id)) {
-            Modules::run('site_security/not_allowed');
-        }
-
-        $query = $this->get_where($id);
-        foreach($query->result() as $row) {
-            $data['title'] = $row->title;
-            $data['url'] = $row->url;
-            $data['price'] = $row->price;
-            $data['description'] = $row->description;
-            $data['big_pic'] = $row->big_pic;
-            $data['small_pic'] = $row->small_pic;
-            $data['was_price'] = $row->was_price;
-            $data['status'] = $row->status;
-        }
-
-        if (!isset($data)) {
-            $data = "";
-        }
-
-        return $data;
-    }
-
-    function fetch_data_from_post() {
-        $data['title'] = $this->input->post('title', TRUE);
-        $data['price'] = $this->input->post('price', TRUE);
-        $data['was_price'] = $this->input->post('was_price', TRUE);
-        $data['description'] = $this->input->post('description', TRUE);
-        $data['status'] = $this->input->post('status', TRUE);
-
-        return $data;
     }
 
     function get($order_by) {

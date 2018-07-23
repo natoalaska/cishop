@@ -27,7 +27,7 @@ class Store_categories extends MX_Controller {
             $this->form_validation->set_rules('title', 'Title', 'required');
 
             if ($this->form_validation->run($this) == TRUE) {
-                $data = $this->fetch_data('post');
+                $data = Modules::run('site_functions/fetch_data', $this->{$this->model}->table, 'post');
 
                 if (is_numeric($id)) {
                     // update account
@@ -47,9 +47,9 @@ class Store_categories extends MX_Controller {
         }
 
         if ((is_numeric($id)) && ($submit != "submit")) {
-            $data = $this->fetch_data('db', $id);
+            $data = Modules::run('site_functions/fetch_data', $this->{$this->model}->table, 'db', $id);
         } else {
-            $data = $this->fetch_data('post');
+            $data = Modules::run('site_functions/fetch_data', $this->{$this->model}->table, 'post');
         }
 
         if (!is_numeric($id)) {
@@ -63,35 +63,6 @@ class Store_categories extends MX_Controller {
         $data['view_file'] = "create";
 
         echo Modules::run('templates/admin', $data);
-    }
-
-    # TODO: add this to a site_function
-    // $type = post or db
-    function fetch_data($type, $id = NULL, $ignore = NULL) {
-        $ignore[] = 'id';
-
-        $sql = "SHOW COLUMNS FROM store_accounts";
-        $query = $this->_custom_query($sql);
-
-        if (is_numeric($id) && $id != NULL) {
-            $db_query = $this->get_where($id);
-        }
-
-        foreach($query->result() as $row) {
-            $column_name = $row->Field;
-            if (!in_array($column_name, $ignore)) {
-                if ($type == 'post') $data[$column_name] = $this->input->post($column_name, TRUE);
-                if ($type == 'db') {
-                    if (isset($db_query) && $db_query->num_rows() > 0) {
-                        foreach($db_query->result() as $row) {
-                            $data["{$column_name}"] = $row->{$column_name};
-                        }
-                    } else $data = NULL;
-                }
-            }
-        }
-
-        return $data;
     }
 
     function get($order_by) {
