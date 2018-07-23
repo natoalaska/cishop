@@ -8,12 +8,42 @@ class Store_categories extends MX_Controller {
         $this->load->model($this->model);
     }
 
-    function manage() {
+    function sort() {
         Modules::run('site_security/_is_admin');
 
+        $number = $this->input->post('number', TRUE);
+
+        for($i = 1; $i <= $number; $i++) {
+            $update_id = $_POST['order' . $i];
+            $data['priority'] = $i;
+            $this->_update($update_id, $data);
+        }
+    }
+
+    function _count_sub_cats($id) {
+        $query = $this->get_where_custom('parent_cat_id', $id);
+
+        return $query->num_rows();
+    }
+
+    function _draw_sortable_list($id) {
+        $sql = "SELECT * FROM store_categories WHERE parent_cat_id = $id ORDER BY priority";
+        $data['query'] = $this->_custom_query($sql);
+        $this->load->view('sortable_list', $data);
+    }
+
+    function manage($parent_cat_id = NULL) {
+        Modules::run('site_security/_is_admin');
+
+        if (!is_numeric($parent_cat_id)) {
+            $parent_cat_id = 0;
+        }
+
+        $data['sort_this'] = TRUE;
+        $data['parent_cat_id'] = $parent_cat_id;
         $data['view_module'] = 'store_categories';
         $data['view_file'] = "manage";
-        $data['categories'] = $this->get('title');
+        $data['categories'] = $this->get_where_custom('parent_cat_id', $parent_cat_id);
         echo Modules::run('templates/admin', $data);
     }
 
@@ -58,11 +88,35 @@ class Store_categories extends MX_Controller {
             $data['headline'] = "Update Category Details";
         }
 
+        $data['options'] = $this->_get_dropdown_options($id);
+        $data['num_dropdown_options'] = count($data['options']);
         $data['update_id'] = $id;
         $data['view_module'] = 'store_categories';
         $data['view_file'] = "create";
 
         echo Modules::run('templates/admin', $data);
+    }
+
+    function _get_cat_title($id) {
+        $data = Modules::run('site_functions/fetch_data', $this->{$this->model}->table, 'db', $id);
+        $cat_title = $data['title'];
+        return $cat_title;
+    }
+
+    function _get_dropdown_options($id) {
+        if (!is_numeric($id)) {
+            $id = 0;
+        }
+        $sql = "SELECT * FROM store_categories WHERE parent_cat_id = 0 AND id != $id";
+        $query = $this->_custom_query($sql);
+
+        $options[''] = 'Please Select...';
+
+        foreach($query->result() as $row) {
+            $options[$row->id] = $row->title;
+        }
+
+        return $options;
     }
 
     function get($order_by) {

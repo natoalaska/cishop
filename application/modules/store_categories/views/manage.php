@@ -14,44 +14,9 @@
     		</div>
     	</div>
     	<div class="box-content">
-    		<table class="table table-striped table-bordered bootstrap-datatable datatable">
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Parent Category</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <?php
-                foreach($categories->result() as $row) { ?>
-    			<tr>
-    				<td><?php echo $row->title; ?></td>
-    				<td><?php echo $row->parent; ?></td>
-    				<!-- <td class="center">
-                        <?php
-                            if ($row->status == 1) { ?>
-                                <span class="label label-success">Active</span>
-                            <?php } else { ?>
-                                <span class="label label-default">Deactive</span>
-                            <?php } ?>
-
-    				</td> -->
-    				<td class="center">
-    					<a class="btn btn-success" href="<?php echo base_url("store_items/view/$row->id"); ?>">
-    						<i class="halflings-icon white zoom-in"></i>
-    					</a>
-    					<a class="btn btn-info" href="<?php echo base_url("store_items/create/$row->id"); ?>">
-    						<i class="halflings-icon white edit"></i>
-    					</a>
-    					<!-- <a class="btn btn-danger" href="#">
-    						<i class="halflings-icon white trash"></i>
-    					</a> -->
-    				</td>
-    			</tr>
-                <?php } ?>
-    		  </tbody>
-    	  </table>
+            <?php
+            echo Modules::run('store_categories/_draw_sortable_list', $parent_cat_id);
+            ?>
     	</div>
     </div><!--/span-->
 

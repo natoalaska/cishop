@@ -72,5 +72,11 @@
 	<script src="<?php echo base_url('assets/admin/js/custom.js'); ?>"></script>
 	<!-- end: JavaScript-->
 
+    <?php
+    if (isset($sort_this)) {
+    	echo Modules::run('templates/sort_this');
+    }
+    ?>
+
 </body>
 </html>

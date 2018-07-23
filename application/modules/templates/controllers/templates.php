@@ -18,6 +18,10 @@ class Templates extends MX_Controller {
         $this->load->view('public_jqm/index', $data);
     }
 
+	function sort_this() {
+        $this->load->view('sort_this');
+    }
+
 }
 
 /* End of file templates.php */
