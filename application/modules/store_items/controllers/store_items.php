@@ -10,6 +10,19 @@ class Store_items extends MX_Controller {
         $this->load->library('form_validation');
     }
 
+    function _get_item_id_from_item_url($item_url) {
+        $query = $this->get_where_custom('url', $item_url);
+        foreach($query->result() as $row) {
+            $item_id = $row->id;
+        }
+
+        if (!isset($item_id)) {
+            $item_id = 0;
+        }
+
+        return $item_id;
+    }
+
     function view($id) {
         if (!is_numeric($id)) {
             Modules::run('site_security/not_allowed');
