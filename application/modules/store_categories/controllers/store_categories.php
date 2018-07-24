@@ -8,6 +8,17 @@ class Store_categories extends MX_Controller {
         $this->load->model($this->model);
     }
 
+    function _draw_top_nav() {
+        $sql = "SELECT * FROM store_categories WHERE parent_cat_id = 0 ORDER BY priority";
+        $query = $this->_custom_query($sql);
+        foreach($query->result() as $row) {
+            $parent_categories[$row->id] = $row->title;
+        }
+        $data['parent_categories'] = $parent_categories;
+
+        $this->load->view('top_nav', $data);
+    }
+
     function _get_parent_cat_title($id) {
         $data = Modules::run('site_functions/fetch_data', $this->{$this->model}->table, 'db', $id);
         $parent_cat_id = $data['parent_cat_id'];
