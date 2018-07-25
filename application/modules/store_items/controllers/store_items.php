@@ -176,7 +176,7 @@ class Store_items extends MX_Controller {
             $this->form_validation->set_rules('description', 'Item Description', 'required');
 
             if ($this->form_validation->run($this) == TRUE) {
-                $data = Modules::run('site_functions/fetch_data', $this->{$this->model}->table, 'post');
+                $data = Modules::run('site_functions/fetch_data', $this->{$this->model}->table, 'post', NULL, array('big_pic', 'small_pic'));
                 $data['url'] = url_title($data['title']);
 
                 if (is_numeric($id)) {

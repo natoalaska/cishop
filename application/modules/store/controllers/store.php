@@ -12,4 +12,10 @@ class Store extends MX_Controller {
         echo Modules::run('store_items/view', $item_id);
     }
 
+    function category() {
+        $category_url = $this->uri->segment(3);
+        $item_id = Modules::run('store_categories/_get_category_id_from_category_url', $category_url);
+        echo Modules::run('store_categories/view', $item_id);
+    }
+
 }

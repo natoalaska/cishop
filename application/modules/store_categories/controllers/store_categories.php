@@ -8,12 +8,26 @@ class Store_categories extends MX_Controller {
         $this->load->model($this->model);
     }
 
+    function _get_category_id_from_category_url($category_url) {
+        $query = $this->get_where_custom('url', $category_url);
+        foreach($query->result() as $row) {
+            $category_id = $row->id;
+        }
+
+        if (!isset($category_id)) {
+            $category_id = 0;
+        }
+
+        return $category_id;
+    }
+
     function _draw_top_nav() {
         $sql = "SELECT * FROM store_categories WHERE parent_cat_id = 0 ORDER BY priority";
         $query = $this->_custom_query($sql);
         foreach($query->result() as $row) {
             $parent_categories[$row->id] = $row->title;
         }
+        $data['target_url_start'] = base_url(Modules::run('site_settings/_get_items_segments'));
         $data['parent_categories'] = $parent_categories;
 
         $this->load->view('top_nav', $data);
@@ -48,6 +62,18 @@ class Store_categories extends MX_Controller {
         return $categories;
     }
 
+    function view($id) {
+        if (!is_numeric($id)) {
+            Modules::run('site_security/not_allowed');
+        }
+
+        $data = Modules::run('site_functions/fetch_data', $this->{$this->model}->table, 'db', $id);
+
+        $data['category_id'] = $id;
+        $data['view_module'] = 'store_categories';
+        $data['view_file'] = "view";
+        echo Modules::run('templates/public_bootstrap', $data);
+    }
 
     function sort() {
         Modules::run('site_security/_is_admin');
@@ -98,7 +124,8 @@ class Store_categories extends MX_Controller {
             $this->form_validation->set_rules('title', 'Title', 'required');
 
             if ($this->form_validation->run($this) == TRUE) {
-                $data = Modules::run('site_functions/fetch_data', $this->{$this->model}->table, 'post');
+                $data = Modules::run('site_functions/fetch_data', $this->{$this->model}->table, 'post', NULL, array('priority'));
+                $data['url'] = url_title($data['title']);
 
                 if (is_numeric($id)) {
                     // update account

@@ -9,7 +9,7 @@
     $sub_categories = Modules::run('store_categories/get_where_custom', 'parent_cat_id', $parent_id);
     foreach($sub_categories->result() as $row) {
     ?>
-    <a class="dropdown-item" href=""><?php echo $row->title; ?></a>
+    <a class="dropdown-item" href="<?php echo $target_url_start . $row->url; ?>"><?php echo $row->title; ?></a>
     <?php } ?>
 </div>
 </li>

@@ -40,7 +40,7 @@
 
     				</td>
     				<td class="center">
-    					<a class="btn btn-success" href="<?php echo base_url("store_items/view/$row->id"); ?>">
+    					<a class="btn btn-success" href="<?php echo base_url(Modules::run('site_settings/_get_item_segments') . $row->url); ?>">
     						<i class="halflings-icon white zoom-in"></i>
     					</a>
     					<a class="btn btn-info" href="<?php echo base_url("store_items/create/$row->id"); ?>">
