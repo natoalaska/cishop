@@ -30,7 +30,7 @@ class Timedate extends MX_Controller {
                 break;
             case 'datepicker':
                 //datepicker // 2-18-2011
-                $the_date = date('m\-d\-Y', $timestamp);
+                $the_date = date('m\/d\/Y', $timestamp);
                 break;
             case 'monyear':
                 //monyear // Feb 2011
@@ -46,11 +46,11 @@ class Timedate extends MX_Controller {
         $minute = 0;
         $second = 0;
 
-        $day = substr($datapicker, 0, 2);
-        $month = substr($datapicker, 3, 2);
+        $month = substr($datapicker, 0, 2);
+        $day = substr($datapicker, 3, 2);
         $year = substr($datapicker, 6, 4);
 
-        $timestamp = $this->maketime($hour, $minute, $second, $month, $day, $year);
+        $timestamp = mktime($hour, $minute, $second, $month, $day, $year);
         return $timestamp;
     }
 
@@ -58,7 +58,7 @@ class Timedate extends MX_Controller {
         $hour = 7;
         $minute = 0;
         $second = 0;
-        $timestamp = $this->maketime($hour, $minute, $second, $month, $day, $year);
+        $timestamp = mktime($hour, $minute, $second, $month, $day, $year);
         return $timestamp;
     }
 
