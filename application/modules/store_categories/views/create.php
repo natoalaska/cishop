@@ -1,4 +1,4 @@
-<h1><?php echo $headline; ?></h1>
+<h1><?php echo $page_headline; ?></h1>
 <hr>
 
 <?php echo validation_errors("<div class='alert alert-error' role='alert'>","</div>"); ?>
@@ -21,14 +21,14 @@
                       <div class="controls">
                           <?php
                           $additional_data = 'id="parent_cat_id" class="span6"';
-                          echo form_dropdown('parent_cat_id', $options, $additional_data);
+                          echo form_dropdown('parent_cat_id', $options, $parent_cat_id, $additional_data);
                           ?>
                       </div>
                   </div>
                   <?php } else {
                       echo form_hidden('parent_cat_id', 0);
                   } ?>
-                  
+
     			<div class="control-group">
     			  <label class="control-label" for="title">Title</label>
     			  <div class="controls">

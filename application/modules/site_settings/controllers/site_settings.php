@@ -18,4 +18,10 @@ class Site_settings extends MX_Controller {
         return $segments;
     }
 
+    function _get_page_not_found_message() {
+        $msg = "<h1>Page Not Found.</h1><br>";
+        $msg .= "<p>This is not the page you are looking for.</p>";
+        return $msg;
+    }
+
 }

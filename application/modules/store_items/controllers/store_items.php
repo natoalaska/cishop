@@ -58,7 +58,7 @@ class Store_items extends MX_Controller {
             redirect('store_items/create/' . $id);
         }
 
-        $data['headline'] = "Upload Image";
+        $data['page_headline'] = "Upload Image";
         $data['update_id'] = $id;
         $data['view_module'] = 'store_items';
         $data['view_file'] = "upload_image";
@@ -133,7 +133,7 @@ class Store_items extends MX_Controller {
 
         if (!$this->upload->do_upload('userfile')) {
             $data['error'] = array('error' => $this->upload->display_errors("<div class='alert alert-error' role='alert'>","</div>"));
-            $data['headline'] = "Upload Image";
+            $data['page_headline'] = "Upload Image";
             $data['update_id'] = $id;
             $data['view_module'] = 'store_items';
             $data['view_file'] = "upload_image";
@@ -152,7 +152,7 @@ class Store_items extends MX_Controller {
             $update_data['small_pic'] = $file_name;
             $this->_update($id, $update_data);
 
-            $data['headline'] = "Upload Success";
+            $data['page_headline'] = "Upload Success";
             $data['update_id'] = $id;
             $data['view_module'] = 'store_items';
             $data['view_file'] = "upload_success";
@@ -203,9 +203,9 @@ class Store_items extends MX_Controller {
         }
 
         if (!is_numeric($id)) {
-            $data['headline'] = "Create New Item";
+            $data['page_headline'] = "Create New Item";
         } else {
-            $data['headline'] = "Update Item Details";
+            $data['page_headline'] = "Update Item Details";
         }
 
         $data['update_id'] = $id;
@@ -221,7 +221,7 @@ class Store_items extends MX_Controller {
         }
         Modules::run('site_security/_is_admin');
 
-        $data['headline'] = "Delete Item";
+        $data['page_headline'] = "Delete Item";
         $data['update_id'] = $id;
         $data['view_module'] = 'store_items';
         $data['view_file'] = "deleteconf";

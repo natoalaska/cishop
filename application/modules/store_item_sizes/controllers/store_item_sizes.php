@@ -17,7 +17,7 @@ class Store_item_sizes extends MX_Controller {
 
         $data['sizes'] = $this->get_where_custom('item_id', $id);
         $data['num_rows'] = $data['sizes']->num_rows();
-        $data['headline'] = "Update Item Sizes";
+        $data['page_headline'] = "Update Item Sizes";
         $data['update_id'] = $id;
         $data['view_module'] = 'store_item_sizes';
         $data['view_file'] = "update";

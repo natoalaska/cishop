@@ -17,7 +17,7 @@ class Store_item_colors extends MX_Controller {
 
         $data['colors'] = $this->get_where_custom('item_id', $id);
         $data['num_rows'] = $data['colors']->num_rows();
-        $data['headline'] = "Update Item Colors";
+        $data['page_headline'] = "Update Item Colors";
         $data['update_id'] = $id;
         $data['view_module'] = 'store_item_colors';
         $data['view_file'] = "update";

@@ -41,7 +41,7 @@ class Store_accounts extends MX_Controller {
             }
         }
 
-        $data['headline'] = 'Update Account Password';
+        $data['page_headline'] = 'Update Account Password';
         $data['update_id'] = $id;
         $data['view_module'] = 'store_accounts';
         $data['view_file'] = "update_pword";
@@ -86,9 +86,9 @@ class Store_accounts extends MX_Controller {
         }
 
         if (!is_numeric($id)) {
-            $data['headline'] = "Create New Account";
+            $data['page_headline'] = "Create New Account";
         } else {
-            $data['headline'] = "Update Account Details";
+            $data['page_headline'] = "Update Account Details";
         }
 
         $data['update_id'] = $id;
@@ -104,7 +104,7 @@ class Store_accounts extends MX_Controller {
         }
         Modules::run('site_security/_is_admin');
 
-        $data['headline'] = "Delete Account";
+        $data['page_headline'] = "Delete Account";
         $data['update_id'] = $id;
         $data['view_module'] = 'store_accounts';
         $data['view_file'] = "deleteconf";

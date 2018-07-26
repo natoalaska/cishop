@@ -151,9 +151,9 @@ class Store_categories extends MX_Controller {
         }
 
         if (!is_numeric($id)) {
-            $data['headline'] = "Create New Category";
+            $data['page_headline'] = "Create New Category";
         } else {
-            $data['headline'] = "Update Category Details";
+            $data['page_headline'] = "Update Category Details";
         }
 
         $data['options'] = $this->_get_dropdown_options($id);

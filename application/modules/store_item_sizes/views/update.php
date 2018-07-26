@@ -1,4 +1,4 @@
-<h1><?php echo $headline; ?></h1>
+<h1><?php echo $page_headline; ?></h1>
 <hr>
 
 <?php if (isset($error)) {

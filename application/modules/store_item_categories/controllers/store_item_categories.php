@@ -38,7 +38,7 @@ class Store_item_categories extends MX_Controller {
             }
         }
 
-        $data['headline'] = "Update Item Categories";
+        $data['page_headline'] = "Update Item Categories";
         $data['item_id'] = $id;
         $data['options'] = $sub_categories;
         $data['view_module'] = 'store_item_categories';
