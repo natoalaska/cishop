@@ -303,8 +303,16 @@ function template_functions(){
 	/* ---------- Text editor ---------- */
 	$('.cleditor').cleditor({width: 'auto'});
 
-	/* ---------- Datapicker ---------- */
+	/* ---------- Datepicker ---------- */
 	$('.datepicker').datepicker();
+
+	/* ---------- Timepicker ---------- */
+	$('.timepicker').timepicker({
+		dynamic: false,
+		scrollbar: true,
+		interval: 15,
+		//defaultTime: new Date($.now())
+	});
 
 	/* ---------- Notifications ---------- */
 	$('.noty').click(function(e){

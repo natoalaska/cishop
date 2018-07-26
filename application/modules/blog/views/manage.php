@@ -16,17 +16,25 @@
     		<table class="table table-striped table-bordered bootstrap-datatable datatable">
                 <thead>
                     <tr>
+                        <th>Picture</th>
                         <th>Title</th>
                         <th>URL</th>
+                        <th>Author</th>
+                        <th>Date Published</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                 <?php
-                foreach($query->result() as $row) { ?>
+                foreach($query->result() as $row) {
+                    $thumbnail = str_replace('.', '_thumb.', $row->picture);
+                ?>
     			<tr>
+                    <td><img src="<?php echo base_url("assets/images/blog_pics/$thumbnail"); ?>" alt=""></td>
     				<td><?php echo $row->title; ?></td>
     				<td><?php echo $row->url; ?></td>
+    				<td><?php echo $row->author; ?></td>
+    				<td><?php echo Modules::run('timedate/get_nice_date', $row->date_published, 'datetime'); ?></td>
     				<td class="center span2">
     					<a class="btn btn-success" href="<?php echo base_url($row->url); ?>">
     						<i class="halflings-icon white zoom-in"></i>

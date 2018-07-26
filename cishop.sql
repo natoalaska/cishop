@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 26, 2018 at 02:01 AM
+-- Generation Time: Jul 27, 2018 at 01:51 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -21,6 +21,35 @@ SET time_zone = "+00:00";
 --
 -- Database: `cishop`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blog`
+--
+
+DROP TABLE IF EXISTS `blog`;
+CREATE TABLE `blog` (
+  `id` int(11) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `keywords` text NOT NULL,
+  `description` text NOT NULL,
+  `content` text NOT NULL,
+  `date_published` int(11) NOT NULL,
+  `author` varchar(65) NOT NULL,
+  `picture` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `blog`
+--
+
+INSERT INTO `blog` (`id`, `url`, `title`, `keywords`, `description`, `content`, `date_published`, `author`, `picture`) VALUES
+(1, 'asdfasf', 'asdfasf', 'asdfasdf', 'afssadf', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis fermentum malesuada magna, vel auctor sem euismod quis. Quisque ac tristique massa. Nulla facilisi. Sed in nibh ipsum. Quisque congue molestie diam non aliquet. In ullamcorper laoreet porta. In ullamcorper felis et ex ultrices, ac congue sem varius. Nulla id mi sit amet nisi mattis consectetur. Suspendisse iaculis augue turpis, vel placerat augue aliquam eget. Nulla aliquam, nisl eget maximus sollicitudin, diam ligula tincidunt lectus, sit amet consectetur diam turpis eu quam. Duis in pulvinar velit, sit amet fringilla magna. Maecenas non orci mattis, sollicitudin risus et, congue tortor. Vivamus imperdiet rhoncus massa vitae volutpat. In a fermentum mi. In porttitor sagittis mi auctor faucibus. Sed consectetur erat sit amet ex tempus ultrices.\r\n\r\nNullam eu urna vitae nibh tincidunt iaculis. Sed pretium ut diam sed sagittis. Nunc sollicitudin ante quis felis aliquet mollis. Aenean maximus porttitor sagittis. Donec accumsan, nibh nec faucibus iaculis, enim eros rhoncus urna, eget dapibus felis sapien nec augue. Ut aliquam velit vel risus sollicitudin, quis dignissim ex consectetur. Cras varius sapien sed laoreet ornare. Phasellus commodo, quam in pellentesque tempus, ante arcu congue ipsum, ac luctus mi nulla nec mauris. Curabitur vitae mattis magna. Integer id venenatis urna. Proin auctor est nec dictum fringilla. Donec semper nunc ut ligula malesuada accumsan. Donec velit enim, dictum at vehicula in, tincidunt et nibh. Mauris cursus euismod tortor ac tristique.\r\n\r\nSuspendisse quis pretium turpis. Fusce non ante erat. Curabitur et purus sodales, volutpat velit eget, laoreet felis. Aliquam suscipit nibh eget felis sodales accumsan. Pellentesque sed porttitor nibh. Integer non facilisis dolor. Ut ac nulla enim. Duis dictum orci massa, ac lobortis sapien ornare ac. Aenean congue turpis eu urna molestie, porta blandit lectus aliquam. Mauris nec risus nec mi aliquet pharetra. Vivamus non aliquet neque. Nulla finibus in erat feugiat lobortis. Fusce justo enim, ultricies ac nulla non, porta dapibus ipsum.', 1532558700, 'Nate V.', 'JGF38wVCeQQDhQHF.jpg'),
+(2, 'Second-Post', 'Second Post', 'asdfsadf', 'asdfsaf', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis fermentum malesuada magna, vel auctor sem euismod quis. Quisque ac tristique massa. Nulla facilisi. Sed in nibh ipsum. Quisque congue molestie diam non aliquet. In ullamcorper laoreet porta. In ullamcorper felis et ex ultrices, ac congue sem varius. Nulla id mi sit amet nisi mattis consectetur. Suspendisse iaculis augue turpis, vel placerat augue aliquam eget. Nulla aliquam, nisl eget maximus sollicitudin, diam ligula tincidunt lectus, sit amet consectetur diam turpis eu quam. Duis in pulvinar velit, sit amet fringilla magna. Maecenas non orci mattis, sollicitudin risus et, congue tortor. Vivamus imperdiet rhoncus massa vitae volutpat. In a fermentum mi. In porttitor sagittis mi auctor faucibus. Sed consectetur erat sit amet ex tempus ultrices.\r\n\r\nNullam eu urna vitae nibh tincidunt iaculis. Sed pretium ut diam sed sagittis. Nunc sollicitudin ante quis felis aliquet mollis. Aenean maximus porttitor sagittis. Donec accumsan, nibh nec faucibus iaculis, enim eros rhoncus urna, eget dapibus felis sapien nec augue. Ut aliquam velit vel risus sollicitudin, quis dignissim ex consectetur. Cras varius sapien sed laoreet ornare. Phasellus commodo, quam in pellentesque tempus, ante arcu congue ipsum, ac luctus mi nulla nec mauris. Curabitur vitae mattis magna. Integer id venenatis urna. Proin auctor est nec dictum fringilla. Donec semper nunc ut ligula malesuada accumsan. Donec velit enim, dictum at vehicula in, tincidunt et nibh. Mauris cursus euismod tortor ac tristique.\r\n\r\nSuspendisse quis pretium turpis. Fusce non ante erat. Curabitur et purus sodales, volutpat velit eget, laoreet felis. Aliquam suscipit nibh eget felis sodales accumsan. Pellentesque sed porttitor nibh. Integer non facilisis dolor. Ut ac nulla enim. Duis dictum orci massa, ac lobortis sapien ornare ac. Aenean congue turpis eu urna molestie, porta blandit lectus aliquam. Mauris nec risus nec mi aliquet pharetra. Vivamus non aliquet neque. Nulla finibus in erat feugiat lobortis. Fusce justo enim, ultricies ac nulla non, porta dapibus ipsum.', 1532645520, 'Nate V.', 'NVmBwBMX7pAUksmN.jpg'),
+(8, 'Test', 'Test', 'asdfasdfsafsafsdfsafsafasfsdaf', 'afasdfsadfsadfsdafsdafsdafsadfsdafsdaf', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis fermentum malesuada magna, vel auctor sem euismod quis. Quisque ac tristique massa. Nulla facilisi. Sed in nibh ipsum. Quisque congue molestie diam non aliquet. In ullamcorper laoreet porta. In ullamcorper felis et ex ultrices, ac congue sem varius. Nulla id mi sit amet nisi mattis consectetur. Suspendisse iaculis augue turpis, vel placerat augue aliquam eget. Nulla aliquam, nisl eget maximus sollicitudin, diam ligula tincidunt lectus, sit amet consectetur diam turpis eu quam. Duis in pulvinar velit, sit amet fringilla magna. Maecenas non orci mattis, sollicitudin risus et, congue tortor. Vivamus imperdiet rhoncus massa vitae volutpat. In a fermentum mi. In porttitor sagittis mi auctor faucibus. Sed consectetur erat sit amet ex tempus ultrices.\r\n\r\nNullam eu urna vitae nibh tincidunt iaculis. Sed pretium ut diam sed sagittis. Nunc sollicitudin ante quis felis aliquet mollis. Aenean maximus porttitor sagittis. Donec accumsan, nibh nec faucibus iaculis, enim eros rhoncus urna, eget dapibus felis sapien nec augue. Ut aliquam velit vel risus sollicitudin, quis dignissim ex consectetur. Cras varius sapien sed laoreet ornare. Phasellus commodo, quam in pellentesque tempus, ante arcu congue ipsum, ac luctus mi nulla nec mauris. Curabitur vitae mattis magna. Integer id venenatis urna. Proin auctor est nec dictum fringilla. Donec semper nunc ut ligula malesuada accumsan. Donec velit enim, dictum at vehicula in, tincidunt et nibh. Mauris cursus euismod tortor ac tristique.\r\n\r\nSuspendisse quis pretium turpis. Fusce non ante erat. Curabitur et purus sodales, volutpat velit eget, laoreet felis. Aliquam suscipit nibh eget felis sodales accumsan. Pellentesque sed porttitor nibh. Integer non facilisis dolor. Ut ac nulla enim. Duis dictum orci massa, ac lobortis sapien ornare ac. Aenean congue turpis eu urna molestie, porta blandit lectus aliquam. Mauris nec risus nec mi aliquet pharetra. Vivamus non aliquet neque. Nulla finibus in erat feugiat lobortis. Fusce justo enim, ultricies ac nulla non, porta dapibus ipsum.', 1532647020, 'Nate V.', 'vzxdWXRPxDndPWNE.jpg'),
+(9, 'Reusable', 'Reusable', 'asdfasfsafdasf', 'asdfasdfasdf', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis fermentum malesuada magna, vel auctor sem euismod quis. Quisque ac tristique massa. Nulla facilisi. Sed in nibh ipsum. Quisque congue molestie diam non aliquet. In ullamcorper laoreet porta. In ullamcorper felis et ex ultrices, ac congue sem varius. Nulla id mi sit amet nisi mattis consectetur. Suspendisse iaculis augue turpis, vel placerat augue aliquam eget. Nulla aliquam, nisl eget maximus sollicitudin, diam ligula tincidunt lectus, sit amet consectetur diam turpis eu quam. Duis in pulvinar velit, sit amet fringilla magna. Maecenas non orci mattis, sollicitudin risus et, congue tortor. Vivamus imperdiet rhoncus massa vitae volutpat. In a fermentum mi. In porttitor sagittis mi auctor faucibus. Sed consectetur erat sit amet ex tempus ultrices.\r\n\r\nNullam eu urna vitae nibh tincidunt iaculis. Sed pretium ut diam sed sagittis. Nunc sollicitudin ante quis felis aliquet mollis. Aenean maximus porttitor sagittis. Donec accumsan, nibh nec faucibus iaculis, enim eros rhoncus urna, eget dapibus felis sapien nec augue. Ut aliquam velit vel risus sollicitudin, quis dignissim ex consectetur. Cras varius sapien sed laoreet ornare. Phasellus commodo, quam in pellentesque tempus, ante arcu congue ipsum, ac luctus mi nulla nec mauris. Curabitur vitae mattis magna. Integer id venenatis urna. Proin auctor est nec dictum fringilla. Donec semper nunc ut ligula malesuada accumsan. Donec velit enim, dictum at vehicula in, tincidunt et nibh. Mauris cursus euismod tortor ac tristique.\r\n\r\nSuspendisse quis pretium turpis. Fusce non ante erat. Curabitur et purus sodales, volutpat velit eget, laoreet felis. Aliquam suscipit nibh eget felis sodales accumsan. Pellentesque sed porttitor nibh. Integer non facilisis dolor. Ut ac nulla enim. Duis dictum orci massa, ac lobortis sapien ornare ac. Aenean congue turpis eu urna molestie, porta blandit lectus aliquam. Mauris nec risus nec mi aliquet pharetra. Vivamus non aliquet neque. Nulla finibus in erat feugiat lobortis. Fusce justo enim, ultricies ac nulla non, porta dapibus ipsum.', 1531692000, 'Nate V.', 'T6qVssWFMygMgg4a.jpg');
 
 -- --------------------------------------------------------
 
@@ -209,11 +238,18 @@ CREATE TABLE `webpages` (
 INSERT INTO `webpages` (`id`, `url`, `title`, `keywords`, `description`, `content`) VALUES
 (1, '', 'Home', '', '', 'This is the Home Page'),
 (2, 'contactus', 'Contact Us', '', '', '<h1>Contact Us</h1><div>Here is the contact us page.</div>'),
-(5, 'First-Page', 'First Page', '', '', 'This is the first page');
+(5, 'First-Page', 'First Page', '', '', 'This is the first page'),
+(6, 'First-Post', 'First Post', 'Keywords', 'Descriptions', 'Here is my first blog post');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `blog`
+--
+ALTER TABLE `blog`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `site_sessions`
@@ -269,6 +305,12 @@ ALTER TABLE `webpages`
 --
 
 --
+-- AUTO_INCREMENT for table `blog`
+--
+ALTER TABLE `blog`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT for table `store_accounts`
 --
 ALTER TABLE `store_accounts`
@@ -308,7 +350,7 @@ ALTER TABLE `store_item_sizes`
 -- AUTO_INCREMENT for table `webpages`
 --
 ALTER TABLE `webpages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

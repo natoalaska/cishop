@@ -4,23 +4,6 @@
 <?php echo validation_errors("<div class='alert alert-error' role='alert'>","</div>"); ?>
 <?php echo $this->session->flashdata('alert'); ?>
 
-
-<?php if (is_numeric($update_id) ) { ?>
-<div class="row-fluid">
-    <div class="box span12">
-        <div class="box-header" data-original-title>
-            <h2><i class="halflings-icon white edit"></i><span class="break"></span>Post Options</h2>
-            <div class="box-icon">
-                <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
-            </div>
-        </div>
-        <div class="box-content">
-            <a href="<?php echo base_url("blog/deleteconf/$update_id"); ?>" class="btn btn-danger">Delete Post</a>
-            <a href="<?php echo base_url($url); ?>" class="btn btn-default">View Post</a>
-        </div>
-    </div>
-</div>
-<?php } ?>
 <div class="row-fluid">
     <div class="box span12">
     	<div class="box-header" data-original-title>
@@ -41,7 +24,9 @@
                 <div class="control-group">
     			  <label class="control-label" for="date_published">Date Published</label>
     			  <div class="controls">
-    				<input type="text" class="span6 datepicker hadDatepicker" name="date_published" value="<?php echo isset($date_published) ? $date_published : ''; ?>">
+    				<input type="text" class="span3 datepicker hadDatepicker" autocomplete=off name="date_published" value="<?php echo isset($date_published) ? $date_published : ''; ?>">
+    				@
+                    <input type="text" class="span3 timepicker" autocomplete=off name="time_published" value="<?php echo isset($time_published) ? $time_published : ''; ?>">
     			  </div>
     			</div>
                 <div class="control-group">
@@ -77,3 +62,41 @@
     	</div>
     </div><!--/span-->
 </div><!--/row-->
+
+<?php if (is_numeric($update_id) ) { ?>
+<div class="row-fluid">
+    <div class="box span12">
+        <div class="box-header" data-original-title>
+            <h2><i class="halflings-icon white edit"></i><span class="break"></span>Post Options</h2>
+            <div class="box-icon">
+                <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
+            </div>
+        </div>
+        <div class="box-content">
+            <?php if ($picture == "") { ?>
+            <a href="<?php echo base_url("blog/upload_image/$update_id"); ?>" class="btn btn-primary">Upload Post Image</a>
+            <?php } else { ?>
+            <a href="<?php echo base_url("blog/delete_image/$update_id"); ?>" class="btn btn-danger">Delete Post Image</a>
+            <?php } ?>
+            <a href="<?php echo base_url("blog/deleteconf/$update_id"); ?>" class="btn btn-danger">Delete Post</a>
+            <a href="<?php echo base_url($url); ?>" class="btn btn-default">View Post</a>
+        </div>
+    </div>
+</div>
+<?php }
+
+if (isset($picture) && $picture != "") { ?>
+<div class="row-fluid">
+    <div class="box span12">
+        <div class="box-header" data-original-title>
+            <h2><i class="halflings-icon white picture"></i><span class="break"></span>Post Image</h2>
+            <div class="box-icon">
+                <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
+            </div>
+        </div>
+        <div class="box-content">
+            <img src="<?php echo base_url("assets/images/blog_pics/$picture"); ?>" alt="">
+        </div>
+    </div>
+</div>
+<?php } ?>

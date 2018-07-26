@@ -32,4 +32,14 @@ class Site_security extends MX_Controller {
         return $result;
     }
 
+    function _generate_random_string($length) {
+        $characters = '23456789abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ';
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, strlen($characters) - 1)];
+        }
+
+        return $randomString;
+    }
+
 }

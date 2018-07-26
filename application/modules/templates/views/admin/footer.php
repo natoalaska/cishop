@@ -19,6 +19,8 @@
 
 	<script src="<?php echo base_url('assets/admin/js/jquery.ui.touch-punch.js'); ?>"></script>
 
+	<script src="<?php echo base_url('assets/admin/js/jquery.timepicker.min.js'); ?>"></script>
+
 	<script src="<?php echo base_url('assets/admin/js/modernizr.js'); ?>"></script>
 
 	<script src="<?php echo base_url('assets/admin/js/bootstrap.min.js'); ?>"></script>
