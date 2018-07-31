@@ -69,6 +69,13 @@ class Store_categories extends MX_Controller {
 
         $data = Modules::run('site_functions/fetch_data', $this->{$this->model}->table, 'db', $id);
 
+        $sql = "SELECT store_items.title, store_items.url, store_items.price, store_items.small_pic, store_items.was_price
+                FROM store_item_categories INNER JOIN store_items ON store_item_categories.item_id = store_items.id
+                WHERE store_item_categories.category_id = $id AND store_items.status = 1";
+
+        $data['query'] = $this->_custom_query($sql);
+        $data['symbol'] = Modules::run('site_settings/_get_currency_symbol');
+        $data['item_segments']= Modules::run('site_settings/_get_item_segments');
         $data['category_id'] = $id;
         $data['view_module'] = 'store_categories';
         $data['view_file'] = "view";

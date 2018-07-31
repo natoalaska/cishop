@@ -24,4 +24,8 @@ class Site_settings extends MX_Controller {
         return $msg;
     }
 
+    function _get_currency_symbol() {
+        return '&dollar;';
+    }
+
 }
