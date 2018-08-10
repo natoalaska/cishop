@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 27, 2018 at 01:51 AM
+-- Generation Time: Aug 10, 2018 at 05:38 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -148,8 +148,13 @@ CREATE TABLE `store_items` (
 --
 
 INSERT INTO `store_items` (`id`, `title`, `url`, `price`, `description`, `big_pic`, `small_pic`, `was_price`, `status`) VALUES
-(1, 'First Item', 'First-Item', '100.00', 'This is a test.', 'rachel.jpg', 'rachel.jpg', '0.00', 1),
-(4, 'Second Item', 'Second-Item', '100.00', 'Test', '', '', '200.00', 1);
+(1, 'First Item', 'First-Item', '100.00', 'This is a test.', '005_Charmeleon3.jpg', '005_Charmeleon3.jpg', '0.00', 1),
+(4, 'Second Item', 'Second-Item', '100.00', 'Test', '005_Charmeleon.jpg', '005_Charmeleon.jpg', '200.00', 1),
+(5, 'Third Item', 'Third-Item', '50.00', '<div xss=removed><font face=\"Arial, Verdana\"><span xss=removed>$query = \"SELECT store_items.title, store_items.url, store.items_price, store_items.small_pic, store_items.was_price</span></font></div><div xss=removed><font face=\"Arial, Verdana\"><span xss=removed>                FROM store_item_categories INNER JOIN store_items ON store_item_categories.item_id = store_items.id</span></font></div><div xss=removed><font face=\"Arial, Verdana\"><span xss=removed>                WHERE store_item_categories.category_id = $id AND store_items.status = 1\"</span></font></div>', '004_Charmander.jpg', '004_Charmander.jpg', '75.00', 1),
+(6, 'Forth Item', 'Forth-Item', '10.00', '<p xss=removed>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras orci lacus, mattis a arcu a, aliquet vulputate ex. Phasellus ac felis eu elit semper eleifend. Cras volutpat dapibus sem eget volutpat. In id purus tincidunt, hendrerit dui ut, consectetur purus. Pellentesque fermentum dictum ullamcorper. Mauris pharetra facilisis diam, vel pulvinar quam pellentesque sed. Vivamus bibendum elit eget tellus maximus, a convallis tortor feugiat. Donec quis est leo.</p><p xss=removed>Proin facilisis vulputate urna, ac pharetra sapien auctor in. Etiam eu felis ut enim ornare convallis. Proin imperdiet augue ac quam interdum efficitur. Aenean dignissim ullamcorper arcu, sit amet lacinia justo ultricies iaculis. Aenean convallis facilisis erat sit amet convallis. Vivamus placerat rutrum erat quis viverra. Nunc ac sem sed enim convallis porta ut ut velit. Mauris eget nulla arcu. Nulla nec consectetur nunc. Proin tristique enim vitae augue sodales semper. Proin a libero lorem. Nulla pretium maximus nunc, eget placerat lectus iaculis scelerisque. Maecenas mollis consequat dapibus.</p><p xss=removed>Nunc elit est, vehicula vitae cursus nec, finibus ac magna. Sed felis dui, feugiat nec justo et, commodo feugiat quam. Nunc rutrum consequat metus, vitae vestibulum diam aliquet a. Duis magna mauris, malesuada vitae porta nec, dapibus ut nulla. Etiam condimentum convallis vestibulum. Suspendisse facilisis aliquam mauris, sit amet porttitor ligula molestie eu. Mauris eros ligula, eleifend ac facilisis eget, porta at risus. Cras volutpat magna sed scelerisque accumsan. Maecenas non porttitor ante. Quisque et neque in arcu tempor euismod in vitae nisl. Donec ut metus dolor. Sed eget odio porttitor, gravida magna vel, tincidunt nulla.</p>', '005_Charmeleon1.jpg', '005_Charmeleon1.jpg', '20.00', 1),
+(7, 'Fifth Item', 'Fifth-Item', '10.00', '<p xss=removed>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras orci lacus, mattis a arcu a, aliquet vulputate ex. Phasellus ac felis eu elit semper eleifend. Cras volutpat dapibus sem eget volutpat. In id purus tincidunt, hendrerit dui ut, consectetur purus. Pellentesque fermentum dictum ullamcorper. Mauris pharetra facilisis diam, vel pulvinar quam pellentesque sed. Vivamus bibendum elit eget tellus maximus, a convallis tortor feugiat. Donec quis est leo.</p><p xss=removed>Proin facilisis vulputate urna, ac pharetra sapien auctor in. Etiam eu felis ut enim ornare convallis. Proin imperdiet augue ac quam interdum efficitur. Aenean dignissim ullamcorper arcu, sit amet lacinia justo ultricies iaculis. Aenean convallis facilisis erat sit amet convallis. Vivamus placerat rutrum erat quis viverra. Nunc ac sem sed enim convallis porta ut ut velit. Mauris eget nulla arcu. Nulla nec consectetur nunc. Proin tristique enim vitae augue sodales semper. Proin a libero lorem. Nulla pretium maximus nunc, eget placerat lectus iaculis scelerisque. Maecenas mollis consequat dapibus.</p><p xss=removed>Nunc elit est, vehicula vitae cursus nec, finibus ac magna. Sed felis dui, feugiat nec justo et, commodo feugiat quam. Nunc rutrum consequat metus, vitae vestibulum diam aliquet a. Duis magna mauris, malesuada vitae porta nec, dapibus ut nulla. Etiam condimentum convallis vestibulum. Suspendisse facilisis aliquam mauris, sit amet porttitor ligula molestie eu. Mauris eros ligula, eleifend ac facilisis eget, porta at risus. Cras volutpat magna sed scelerisque accumsan. Maecenas non porttitor ante. Quisque et neque in arcu tempor euismod in vitae nisl. Donec ut metus dolor. Sed eget odio porttitor, gravida magna vel, tincidunt nulla.</p>', '005_Charmeleon2.jpg', '005_Charmeleon2.jpg', '0.00', 1),
+(8, 'Sixth Item', 'Sixth-Item', '10.00', '<p xss=removed>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras orci lacus, mattis a arcu a, aliquet vulputate ex. Phasellus ac felis eu elit semper eleifend. Cras volutpat dapibus sem eget volutpat. In id purus tincidunt, hendrerit dui ut, consectetur purus. Pellentesque fermentum dictum ullamcorper. Mauris pharetra facilisis diam, vel pulvinar quam pellentesque sed. Vivamus bibendum elit eget tellus maximus, a convallis tortor feugiat. Donec quis est leo.</p><p xss=removed>Proin facilisis vulputate urna, ac pharetra sapien auctor in. Etiam eu felis ut enim ornare convallis. Proin imperdiet augue ac quam interdum efficitur. Aenean dignissim ullamcorper arcu, sit amet lacinia justo ultricies iaculis. Aenean convallis facilisis erat sit amet convallis. Vivamus placerat rutrum erat quis viverra. Nunc ac sem sed enim convallis porta ut ut velit. Mauris eget nulla arcu. Nulla nec consectetur nunc. Proin tristique enim vitae augue sodales semper. Proin a libero lorem. Nulla pretium maximus nunc, eget placerat lectus iaculis scelerisque. Maecenas mollis consequat dapibus.</p><p xss=removed>Nunc elit est, vehicula vitae cursus nec, finibus ac magna. Sed felis dui, feugiat nec justo et, commodo feugiat quam. Nunc rutrum consequat metus, vitae vestibulum diam aliquet a. Duis magna mauris, malesuada vitae porta nec, dapibus ut nulla. Etiam condimentum convallis vestibulum. Suspendisse facilisis aliquam mauris, sit amet porttitor ligula molestie eu. Mauris eros ligula, eleifend ac facilisis eget, porta at risus. Cras volutpat magna sed scelerisque accumsan. Maecenas non porttitor ante. Quisque et neque in arcu tempor euismod in vitae nisl. Donec ut metus dolor. Sed eget odio porttitor, gravida magna vel, tincidunt nulla.</p>', '004_Charmander1.jpg', '004_Charmander1.jpg', '0.00', 1),
+(9, 'Seventh Item', 'Seventh-Item', '1000.00', '<p xss=removed>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras orci lacus, mattis a arcu a, aliquet vulputate ex. Phasellus ac felis eu elit semper eleifend. Cras volutpat dapibus sem eget volutpat. In id purus tincidunt, hendrerit dui ut, consectetur purus. Pellentesque fermentum dictum ullamcorper. Mauris pharetra facilisis diam, vel pulvinar quam pellentesque sed. Vivamus bibendum elit eget tellus maximus, a convallis tortor feugiat. Donec quis est leo.</p><p xss=removed>Proin facilisis vulputate urna, ac pharetra sapien auctor in. Etiam eu felis ut enim ornare convallis. Proin imperdiet augue ac quam interdum efficitur. Aenean dignissim ullamcorper arcu, sit amet lacinia justo ultricies iaculis. Aenean convallis facilisis erat sit amet convallis. Vivamus placerat rutrum erat quis viverra. Nunc ac sem sed enim convallis porta ut ut velit. Mauris eget nulla arcu. Nulla nec consectetur nunc. Proin tristique enim vitae augue sodales semper. Proin a libero lorem. Nulla pretium maximus nunc, eget placerat lectus iaculis scelerisque. Maecenas mollis consequat dapibus.</p><p xss=removed>Nunc elit est, vehicula vitae cursus nec, finibus ac magna. Sed felis dui, feugiat nec justo et, commodo feugiat quam. Nunc rutrum consequat metus, vitae vestibulum diam aliquet a. Duis magna mauris, malesuada vitae porta nec, dapibus ut nulla. Etiam condimentum convallis vestibulum. Suspendisse facilisis aliquam mauris, sit amet porttitor ligula molestie eu. Mauris eros ligula, eleifend ac facilisis eget, porta at risus. Cras volutpat magna sed scelerisque accumsan. Maecenas non porttitor ante. Quisque et neque in arcu tempor euismod in vitae nisl. Donec ut metus dolor. Sed eget odio porttitor, gravida magna vel, tincidunt nulla.</p>', '004_Charmander2.jpg', '004_Charmander2.jpg', '1500.00', 1);
 
 -- --------------------------------------------------------
 
@@ -169,7 +174,13 @@ CREATE TABLE `store_item_categories` (
 --
 
 INSERT INTO `store_item_categories` (`id`, `category_id`, `item_id`) VALUES
-(5, 2, 1);
+(5, 2, 1),
+(6, 2, 4),
+(7, 2, 5),
+(8, 2, 6),
+(9, 2, 7),
+(10, 2, 8),
+(11, 2, 9);
 
 -- --------------------------------------------------------
 
@@ -326,13 +337,13 @@ ALTER TABLE `store_categories`
 -- AUTO_INCREMENT for table `store_items`
 --
 ALTER TABLE `store_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `store_item_categories`
 --
 ALTER TABLE `store_item_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `store_item_colors`
