@@ -8,6 +8,29 @@ class Store_categories extends MX_Controller {
         $this->load->model($this->model);
     }
 
+    function test() {
+        $users['han'] = 42;
+        $users['luke'] = 32;
+        $users['yoda'] = 900;
+        $users['chewie'] = 200;
+        $users['zebadee'] = 12;
+
+        echo "<h1>Who's the oldest?</h1>";
+        echo $this->get_highest($users);
+    }
+
+    function get_highest($array) {
+        foreach ($array as $key => $value) {
+            if (!isset($highest)) {
+                $highest = $key;
+            } else if ($value > $array[$highest]) {
+                $highest = $key;
+            }
+        }
+
+        return $highest;
+    }
+
     function _get_category_id_from_category_url($category_url) {
         $query = $this->get_where_custom('url', $category_url);
         foreach($query->result() as $row) {
@@ -69,17 +92,56 @@ class Store_categories extends MX_Controller {
 
         $data = Modules::run('site_functions/fetch_data', $this->{$this->model}->table, 'db', $id);
 
-        $sql = "SELECT store_items.title, store_items.url, store_items.price, store_items.small_pic, store_items.was_price
-                FROM store_item_categories INNER JOIN store_items ON store_item_categories.item_id = store_items.id
-                WHERE store_item_categories.category_id = $id AND store_items.status = 1";
+        $query = $this->_custom_query($this->_generate_mysql_query($id));
+        $total_items = $query->num_rows();
 
-        $data['query'] = $this->_custom_query($sql);
+        $data['query'] = $this->_custom_query($this->_generate_mysql_query($id, TRUE));
+
+        $data['showing_statement'] = Modules::run('bootstrap/_get_showing_statement', $total_items, $this->get_offset(), $this->get_limit());
+        $data['pagination'] = Modules::run('bootstrap/_generate_pagination', $this->get_target_url(), $total_items, 4, $this->get_limit());
         $data['symbol'] = Modules::run('site_settings/_get_currency_symbol');
         $data['item_segments']= Modules::run('site_settings/_get_item_segments');
         $data['category_id'] = $id;
         $data['view_module'] = 'store_categories';
         $data['view_file'] = "view";
         echo Modules::run('templates/public_bootstrap', $data);
+    }
+
+    function _generate_mysql_query($id, $use_limit = FALSE) {
+        $sql = "SELECT store_items.title, store_items.url, store_items.price, store_items.small_pic, store_items.was_price
+                FROM store_item_categories INNER JOIN store_items ON store_item_categories.item_id = store_items.id
+                WHERE store_item_categories.category_id = $id AND store_items.status = 1";
+
+        if ($use_limit == TRUE) {
+            $limit = $this->get_limit();
+            $offset = $this->get_offset();
+            $sql .= " LIMIT $offset, $limit";
+        }
+
+        return $sql;
+    }
+
+    function get_target_url() {
+        $first = $this->uri->segment(1);
+        $second = $this->uri->segment(2);
+        $third = $this->uri->segment(3);
+
+        $target_url = $first . "/" . $second . "/" . $third;
+
+        return $target_url;
+    }
+
+    function get_limit() {
+        $limit = 5;
+        return $limit;
+    }
+
+    function get_offset() {
+        $offset = $this->uri->segment(4);
+        if (!is_numeric($offset)) {
+            $offset = 0;
+        }
+        return $offset;
     }
 
     function sort() {

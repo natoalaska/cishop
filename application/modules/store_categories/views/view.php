@@ -1,10 +1,20 @@
+<?php echo Modules::run('bootstrap/_draw_breadcrumbs'); ?>
+
 <h1><?php echo $title; ?></h1>
+
+<div class="row">
+    <div class="col-md-12 mb-4">
+        <?php echo $showing_statement; ?>
+        <br><br>
+        <?php echo $pagination; ?>
+    </div>
+</div>
 
 <div class="row">
 <?php foreach($query->result() as $row) { ?>
     <div class="col-md-2 card mb-4 mr-3" style="height: 300px;">
         <a href="<?php echo base_url($item_segments . $row->url); ?>">
-            <img class="card-img-top" src="<?php echo base_url("assets/images/small_pics/$row->small_pic"); ?>" alt="<?php echo $row->title; ?>"></a>
+            <img class="card-img-top" src="<?php echo base_url("assets/images/small_pics/$row->small_pic"); ?>" title="<?php echo $row->title; ?>"></a>
         </a>
         <div class="card-body">
             <h6 class="card-title"><a href="<?php echo base_url($item_segments . $row->url); ?>"><?php echo $row->title; ?></a></h6>
